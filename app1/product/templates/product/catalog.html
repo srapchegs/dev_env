@@ -43,7 +43,7 @@
                 {% for product in products %}
                 <a href="{% url "catalog:detail" %}" class="item-card">
                     <div class="image-info">
-                        {% comment %} <img class="image-item" src="{% static  %}"> {% endcomment %}
+                        <img class="image-item" src="{{ product.image.url }}">
                         <div class="price">
                             <span class="price-text">{{product.price}} ₽ / шт</span>
                         </div>

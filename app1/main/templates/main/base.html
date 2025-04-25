@@ -1,4 +1,6 @@
 {% load static %}
+{% load products_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,6 +45,7 @@
                     </a>
                 </div>
                 <div class="item-group">
+                    {% tag_categories as categories %}
                     {% for category in categories %}
                         <div class="item">
                             <a href="{% url "catalog:catalog" %}" class="item-text">{{ category.name }}</a>
