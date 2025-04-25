@@ -48,7 +48,7 @@
                     {% tag_categories as categories %}
                     {% for category in categories %}
                         <div class="item">
-                            <a href="{% url "catalog:catalog" %}" class="item-text">{{ category.name }}</a>
+                            <a href="{% url "catalog:catalog" category.slug %}" class="item-text">{{ category.name }}</a>
                         </div>
                     {% endfor %}
                     <div class="item">

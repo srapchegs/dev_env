@@ -5,27 +5,27 @@
 {% endblock css %}
 {% block content %}
     <div class="detail-section">
-        <img style="width: 300px;" src="{% static 'deps/images/блок.jpg' %}">
+        <img style="width: 300px;" src="{{ product.image.url }}">
         <div class="container-detail">
             <div class="content-detail">
                 <div class="breadcrumbs-detail">
                     <div class="breadcrumbs-detail-container">
-                        <span class="black-breadcrumbs-detail">Главная</span>
+                        <a href={% url "main:index" %} class="black-breadcrumbs-detail">Главная</a>
                         <span class="black-breadcrumbs-detail"> / </span>
-                        <span class="black-breadcrumbs-detail">Блоки</span>
+                        <a href={% url "catalog:catalog" product.category.category.slug %} class="black-breadcrumbs-detail">Блоки</a>
                         <span class="black-breadcrumbs-detail"> / </span>
-                        <span class="grey-breadcrumbs-detail">Керамзитоблок M350</span>
+                        <span class="grey-breadcrumbs-detail">{{product.name}}</span>
                     </div>
                 </div>
                 <div class="header-page">
                     <span class="heading-detail">
-                        Керамзитоблок M350
+                        {{product.name}}
                     </span>
                     <div class="info-block">
                         <div class="info-container-detail">
                             <div class="line-info-detail">
                                 <b>Размеры мм.</b>
-                                <span>390x190x188</span>
+                                <span>{{product.size}}</span>
                             </div>
                             <div class="line-info-detail">
                                 <b>Вес</b>
@@ -33,7 +33,7 @@
                             </div>
                             <div class="line-info-detail">
                                 <b>Состав</b>
-                                <span>Строительный песок, керамзит, цемент</span>
+                                <span>{{product.compound}}</span>
                             </div>
                             <div class="line-info-detail">
                                 <b>Кол-во на поддоне (шт.)</b>
@@ -44,7 +44,7 @@
                                 <span>Есть в наличии</span>
                             </div>
                             <span class="price-detail">
-                                92 ₽ шт.
+                                {{product.price}} ₽ шт.
                             </span>
                             <div class="buttons-container-detail">
                                 <button class="order-button-detail">В корзину</button>
@@ -61,13 +61,8 @@
                             Описание
                         </span>
                         <span class="text-description">
-                            Керамзитоблок 390x190x188 М35 — это надежный и практичный строительный материал, который отлично подходит для возведения прочных и долговечных стен. Благодаря марке прочности М35 он выдерживает значительные нагрузки, что делает его идеальным выбором для строительства как жилых домов, так и хозяйственных построек.
-                        </br>
-                        </br>
-                            Его оптимальные размеры обеспечивают удобную укладку и сокращают время на строительство. Керамзитоблок обладает хорошими тепло- и звукоизоляционными свойствами, что позволяет создать комфортный микроклимат внутри помещения и снизить затраты на отопление.
-                        </br>
-                        </br>
-                            Он устойчив к влаге, не подвержен гниению и не требует дополнительной обработки, что делает его еще более выгодным решением. Этот материал — отличный выбор для тех, кто ценит прочность, надежность и экономичность.                        </span>
+                            {{product.description}}
+                        </span>
                     </div>
                 </div>
             </div>  

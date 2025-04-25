@@ -20,6 +20,6 @@ from product import views
 app_name="product"
 
 urlpatterns = [
-    path('', views.catalog, name="catalog"),
-    path('detail/', views.detail, name="detail"),
+    path('<slug:category_slug>/', views.catalog, name="catalog"),
+    path('<slug:category_slug>/<slug:product_slug>/', views.detail, name="detail"),
 ]

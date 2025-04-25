@@ -12,7 +12,7 @@
         <div class="content-title">
             <div class="container-content">
                 <div class="breadcrumbs">
-                    <span class="white-crumb">Главная</span>
+                    <a href={% url "main:index" %} class="white-crumb">Главная</a>
                     <span class="white-crumb">/</span>
                     <span class="grey-crumb">Блоки</span>
                 </div>
@@ -41,7 +41,7 @@
             </div>
             <div class="items-cards">
                 {% for product in products %}
-                <a href="{% url "catalog:detail" %}" class="item-card">
+                <a href="{% url 'catalog:detail' product.category.category.slug product.slug %}" class="item-card">
                     <div class="image-info">
                         <img class="image-item" src="{{ product.image.url }}">
                         <div class="price">
