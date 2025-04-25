@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from product.models import Products
+from product.models import Products, Categories
 
 # Create your views here.
 
@@ -13,8 +13,9 @@ def detail(request, product_slug,category_slug):
 
 def catalog(request, category_slug):
     products = Products.objects.filter(category__category__slug=category_slug)
+    category = Categories.objects.get(slug=category_slug)
     context = {
-        'title': "Блоки",
+        'category': category,
         "products": products
     }
     return render(request, 'product/catalog.html', context)

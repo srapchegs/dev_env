@@ -46,11 +46,5 @@ def reviews(request):
     }
     return render(request, 'main/reviews.html', context)
 
-def cars(request):
-    context = {
-        'title': "Спец. техника"
-    }
-    return render(request, 'main/cars.html', context)
-
 def about(request):
     return HttpResponse('Home page')

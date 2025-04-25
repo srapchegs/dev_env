@@ -26,5 +26,4 @@ urlpatterns = [
     path('contacts/', views.contacts, name="contacts"),
     path('favorite/', views.favorite, name="favorite"),
     path('reviews/', views.reviews, name="reviews"),
-    path('cars/', views.cars, name="cars"),
 ]
