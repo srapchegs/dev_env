@@ -43,15 +43,11 @@
                     </a>
                 </div>
                 <div class="item-group">
-                    <div class="item">
-                        <a href="{% url "catalog:catalog" %}" class="item-text">Блоки</a>
-                    </div>
-                    <div class="item">
-                        <span class="item-text">Плитки</span>
-                    </div>
-                    <div class="item">
-                        <span class="item-text">Бордюры</span>
-                    </div>
+                    {% for category in categories %}
+                        <div class="item">
+                            <a href="{% url "catalog:catalog" %}" class="item-text">{{ category.name }}</a>
+                        </div>
+                    {% endfor %}
                     <div class="item">
                         <a href="{% url "main:cars" %}" class="item-text">Спец. техника</a>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">

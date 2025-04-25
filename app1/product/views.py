@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from product.models import Products
 
 # Create your views here.
 
@@ -9,7 +10,9 @@ def detail(request):
     return render(request, 'product/detail.html', context)
 
 def catalog(request):
+    products = Products.objects.all()
     context = {
-        'title': "Блоки"
+        'title': "Блоки",
+        "products": products
     }
     return render(request, 'product/catalog.html', context)
