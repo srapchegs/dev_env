@@ -1,0 +1,329 @@
+.footer{
+    display: flex;
+    padding: var(--stack-offset, 56px) var(--inline-offset, 16px);
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    background: var(--dark-green-900, #253A31);
+}
+body{
+    margin: 0;
+}
+.flex-container-footer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-xl, 24px);
+    flex: 1 0 0;
+    align-self: stretch;
+}
+.line{
+    background: var(--gray-100, #D7D8D9);
+    width: 100%;
+    height: 1px;
+    margin: auto;
+}
+.container-copyright{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--stack-spacing-2xl, 32px);
+    align-self: stretch;
+}
+.mylogo{
+    width: 50px;
+}
+.copyright-text{
+    color: var(--gray-300, #B9BCBE);
+    font-family: "NunitoSans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 25.6px */
+    display: flex;
+    flex: 1;
+}
+.menu-footer{
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    width: 100%;
+    align-items: flex-start;
+    gap: var(--stack-spacing-2xl, 32px);
+    align-self: stretch;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.first-item-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-m, 16px);
+    align-self: stretch;
+}
+.second-item-group{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    align-self: stretch;
+}
+.third-item-group{
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+}
+.title-first-group{
+    color: var(--white, #FFF);
+    flex: 1 0 0;
+    font-family: "NunitoSans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%; /* 20.8px */
+}
+.inner-item-group{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    align-self: stretch;
+}
+.items-inner-group{
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-s, 16px);
+    align-self: stretch;
+}
+.title-inner{
+    color: var(--white, #FFF);
+    font-family: "NunitoSans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 18.2px */
+    align-self: stretch;
+}
+.first-item-group.active .items-inner-group {
+    display: flex;
+}
+.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+svg {
+    transition: transform 0.3s ease;
+}
+@media (min-width:768px){
+    .items-inner-group{
+        display: flex;
+    }
+    .footer{
+        display: flex;
+        padding: var(--stack-offset, 80px) var(--inline-offset, 32px);
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .flex-container-footer{
+        display: flex;
+        width: 656px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xl, 32px);
+        flex-shrink: 0;
+        align-self: stretch;
+    }
+    .line{
+        width: 656px;
+    }
+    
+    .container-copyright{
+        width: 656px;
+        display: flex;
+        align-items: flex-start;
+        gap: var(--gutter, 16px);
+        align-self: stretch;
+    }
+    .menu-footer{
+        display: flex;
+        width: 656px;
+        align-items: flex-start;
+        gap: var(--gutter, 16px);
+        align-self: stretch;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+    .first-item-group{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xl, 32px);
+    }
+    .second-item-group{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-m, 20px);
+        align-self: stretch;
+    }
+    .third-item-group{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xl, 32px);
+        flex: 1 0 0;
+    }
+    .inner-item-group svg {
+        display: none;
+    }
+}
+@media (min-width:1024px){
+    .footer{
+        display: flex;
+        padding: var(--stack-offset, 80px) var(--inline-offset, 32px);
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .flex-container-footer{
+        display: flex;
+        width: 944px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xl, 32px);
+        flex-shrink: 0;
+        align-self: stretch;
+    }
+    .line{
+        width: 944px;
+    }
+    .container-copyright{
+        display: flex;
+        width: 944px;
+        align-items: flex-start;
+        gap: var(--gutter, 16px);
+        align-self: stretch;
+    }
+    .first-item-group{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xl, 20px);
+    }
+    .second-item-group{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-m, 20px);
+    }
+    .third-item-group{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xl, 32px);
+        flex: 1 0 0;
+    }
+    .menu-footer{
+        display: flex;
+        width: 944px;
+        align-items: flex-start;
+        gap: var(--gutter, 16px);
+        align-self: stretch;
+    }
+}
+@media (min-width:1400px){
+    .flex-container-footer{
+        display: flex;
+        width: var(--grid-s-container, 1264px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xl, 40px);
+        flex-shrink: 0;
+        align-self: stretch;
+    }
+    .container-copyright{
+        display: flex;
+        align-items: flex-start;
+        gap: var(--gutter, 32px);
+        align-self: stretch;
+    }
+    .menu-footer{
+        width: var(--grid-s-container, 1264px);
+        display: flex;
+        align-items: flex-start;
+        gap: var(--gutter, 32px);
+        align-self: stretch;
+    }
+    .first-item-group{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xl, 24px);
+    }
+    .second-item-group{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-m, 24px);
+    }
+    .third-item-group{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-m, 24px);
+    }
+    .title-inner{
+        color: var(--white, #FFF);
+        font-family: "NunitoSans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 130%; /* 20.8px */
+        align-self: stretch;
+    }
+    .title-first-group{
+        color: var(--white, #FFF);
+        flex: 1 0 0;
+        font-family: "NunitoSans";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 130%; /* 23.4px */
+    }
+}
+@media (min-width:1600px){
+    .footer{
+        padding: var(--stack-offset, 96px) var(--inline-offset, 32px);
+    }
+    .flex-container-footer{
+        display: flex;
+        width: 1408px;
+        max-width: var(--grid-container, 1408px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xl, 40px);
+        flex-shrink: 0;
+        align-self: stretch;
+    }
+    .menu-footer{
+        max-width: var(--grid-container, 1408px);
+        display: flex;
+        width: 1408px;
+        align-items: flex-start;
+        gap: var(--gutter, 32px);
+        align-self: stretch;
+    }
+    .line{
+        width: 1408px;
+    }
+    .container-copyright{
+        width: 1408px;
+    }
+}
+@font-face {
+    font-family: "NunitoSans"; 
+    src: url("../fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+  } 

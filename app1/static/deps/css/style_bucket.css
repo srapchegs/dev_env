@@ -1,0 +1,81 @@
+.group-bucket{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.date-group input{
+    width: 50px;
+}
+.sum-purchase{
+    color: var(--black, #1F2238);
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "NunitoSans";
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px; /* 120% */
+}
+.description-purchase{
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    align-items: flex-start
+}
+.description-purchase div{
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+}
+.button-order{
+    margin-top: 40px;
+    background-color: #253A31;
+    color: white;
+    font-family: "NunitoSans";
+    border-radius: 20px;
+    padding: 10px 40px;
+    font-size: 20px;
+    font-weight: 100;
+    font-style: normal;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+.button-order:hover{
+    background-color: #3a5b4c;
+    transition: background-color 0.3s;
+}
+
+@media (min-width:576px){
+    .group-bucket{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+@media (min-width:768px){
+    .sum-purchase{
+        color: var(--black, #1F2238);
+        font-feature-settings: 'liga' off, 'clig' off;
+        /* tab/h1 36-42-600 */
+        font-family: "NunitoSans";
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 42px; /* 116.667% */
+    }
+    .group-bucket{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

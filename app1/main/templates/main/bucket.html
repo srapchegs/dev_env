@@ -1,0 +1,97 @@
+{%  extends "main/base.html" %}
+
+{% load static %}
+
+{% block content%}
+    <div class="container-bucket">
+        <div class="content-purchase">
+            <span class="title-orders">Корзина</span>
+            <div class="table-orders">
+                <div class="orders-table">
+                    <div class="block-order">
+                        <div class="group-order group-bucket">
+                            <div class="date-group">
+                                <img style="width: 60px; border-radius: 5px;" src="{% static 'deps/images/блок.jpg' %}">
+                            </div>
+                            <div class="date-group">
+                                <span class="accept-order">Товар</span>
+                                <span class="date-order">Керамзитоблок M350</span>
+                            </div>
+                            <div class="date-group">
+                                <span class="accept-order">Цена</span>
+                                <span class="date-order">90 ₽</span>
+                            </div>
+                            <div class="date-group">
+                                <span class="accept-order">Количество</span>
+                                <input type="number">
+                            </div>
+                            <div class="date-group">
+                                <span class="accept-order">Стоимость</span>
+                                <input type="number">
+                            </div>
+                            <div class="date-group">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4.92896 4.92896L11.9985 12M11.9985 12L19.0711 4.92896M11.9985 12L19.0703 19.0719M11.9985 12L4.92896 19.0711" stroke="#1F2238" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="line-order"></div>
+                    </div>
+                    <div class="block-order">
+                        <div class="group-order group-bucket">
+                            <div class="date-group">
+                                <img style="width: 60px; border-radius: 5px;" src="{% static 'deps/images/блок.jpg' %}">
+                            </div>
+                            <div class="date-group">
+                                <span class="accept-order">Товар</span>
+                                <span class="date-order">Керамзитоблок M350</span>
+                            </div>
+                            <div class="date-group">
+                                <span class="accept-order">Цена</span>
+                                <span class="date-order">90 ₽</span>
+                            </div>
+                            <div class="date-group">
+                                <span class="accept-order">Количество</span>
+                                <input type="number">
+                            </div>
+                            <div class="date-group">
+                                <span class="accept-order">Стоимость</span>
+                                <input type="number">
+                            </div>
+                            <div class="date-group">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4.92896 4.92896L11.9985 12M11.9985 12L19.0711 4.92896M11.9985 12L19.0703 19.0719M11.9985 12L4.92896 19.0711" stroke="#1F2238" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="line-order"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="description-purchase">
+                <div>
+                    <span class="sum-purchase">Общая стоимость: 1 432 323 ₽</span>
+                </div>
+                <div>
+                    <span class="sum-purchase">Способ доставки:</span>
+                    <select class="select-items">
+                        <option>Доставка</option>
+                        <option>Самовывоз</option>
+                    </select>
+                </div>  
+                <div>
+                    <span class="sum-purchase">Способ оплаты:</span>
+                    <select class="select-items">
+                        <option>QR-code</option>
+                        <option>СБП</option>
+                        <option>Наличными</option>
+                    </select>
+                </div>
+                <div>
+                    <span class="sum-purchase">Контактные данные берутся из личного кабинета</span>
+                </div>
+            </div>
+        </div>
+        <button class="button-order">Оформить заказ</button>
+    </div>
+{% endblock content %}

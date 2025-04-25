@@ -1,0 +1,236 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'deps/css/style.css' %}" rel="stylesheet">
+    {% comment %} <link href="{% static 'deps/css/style_items.css' %}" rel="stylesheet"> {% endcomment %}
+    <link href="{% static 'deps/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'deps/css/style_reviews.css' %}" rel="stylesheet">
+    <link href="{% static 'deps/css/style_contact.css' %}" rel="stylesheet">
+    <link href="{% static 'deps/css/style_cars.css' %}" rel="stylesheet">
+    <link href="{% static 'deps/css/style_reviews.css' %}" rel="stylesheet">
+    <link href="{% static 'deps/css/style_purchase.css' %}" rel="stylesheet">
+    <link href="{% static 'deps/css/style_bucket.css' %}" rel="stylesheet">
+    {% block css %}
+    {% endblock css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <header class="headers">
+        <div class="dop-header">
+            <div class="dop-flex-container">
+                <div class="dop-div">
+                    <span class="text-dop">г. Тюмень, ул. Малыгина, д. 84, к. 1, офис 408</span>
+                </div>
+                <div class="dop-div2">
+                    <span class="text-dop">Пн -Пт: 09:00-18:00</span>
+                </div>
+                <div class="dop-div2">
+                    <span class="text-dop">+7 (912) 922-73-17</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-div">
+            <div class="flex-container">
+                <div class="logo-header">
+                    <a href="/" >
+                    <img src="{% static 'deps/images/лого.png' %}">
+                    </a>
+                </div>
+                <div class="item-group">
+                    <div class="item">
+                        <a href="/catalog/" class="item-text">Блоки</a>
+                    </div>
+                    <div class="item">
+                        <span class="item-text">Плитки</span>
+                    </div>
+                    <div class="item">
+                        <span class="item-text">Бордюры</span>
+                    </div>
+                    <div class="item">
+                        <a href="/cars/" class="item-text">Спец. техника</a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10.5745 12.7764C10.2553 13.0745 9.74473 13.0745 9.42547 12.7764L5.7484 9.34304C5.22255 8.85204 5.58703 8 6.32293 8L13.6771 8C14.413 8 14.7775 8.85204 14.2516 9.34304L10.5745 12.7764Z" fill="#9CCA9C"/>
+                        </svg>
+                        <div class="block">
+                            <a href="/cars/" class="item-text2">Камаз</a>
+                            <a href="/cars/" class="item-text2">Манипулятор</a>
+                            <a href="/cars/" class="item-text2">Вышка</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <span class="item-text">О компании</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10.5745 12.7764C10.2553 13.0745 9.74473 13.0745 9.42547 12.7764L5.7484 9.34304C5.22255 8.85204 5.58703 8 6.32293 8L13.6771 8C14.413 8 14.7775 8.85204 14.2516 9.34304L10.5745 12.7764Z" fill="#9CCA9C"/>
+                        </svg>
+                        <div class="block">
+                            <a href="/contacts/" class="item-text2">Контакты</a>
+                            <a href="/reviews/" class="item-text2">Отзывы</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button type="button" id="openBtn" class="button-menu hide">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M3.33301 15H16.6663M3.33301 10H16.6663M3.33301 5H16.6663" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <a href="/purchase/" type="button" class="button-menu hide1">
+                        <img class="bucket" src="{% static 'deps/images/lk2.png' %}">
+                    </a>
+                    <a href="/favorite/" type="button" class="button-menu hide2">
+                        <img class="bucket" src="{% static 'deps/images/fav.png' %}">
+                    </a>
+                    <a href="/bucket/" type="button" class="button-menu">
+                        <img class="bucket" src="{% static 'deps/images/корзина.png' %}">
+                    </a>   
+                </div>
+            </div>
+        </div>
+        <div id="overlay"></div>
+        <div id="sidePanel" class="side-panel">
+            <button id="closeBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4.10767 4.10645L9.99896 9.99902M9.99896 9.99902L15.8928 4.10645M9.99896 9.99902L15.8921 15.8922M9.99896 9.99902L4.10767 15.8916" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            
+            <div class="right-menu">
+                <img class="lk" src="{% static 'deps/images/lk.png' %}"></br>
+                <a href="/purchase/" class="lk-text">Личный кабинет</a>
+                <div class="line-lk">
+                </div>
+                <div class="right-menu-items">
+                    <span>Блоки</span>
+                    <span>Плитки</span>
+                    <span>Бордюры</span>
+                    <span>Спец. техника</span>
+                    <span>Избранное</span>
+                    <span>О компании</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% block content %}
+    {% endblock content %}
+    <div class="footer">
+        <div class="flex-container-footer">
+            <div class="menu-footer">
+                <div class="first-item-group">
+                    <div class="inner-item-group">
+                        <span class="title-first-group">Товары</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4698 8.46967C11.7627 8.17678 12.2375 8.17678 12.5304 8.46967L17.5304 13.4697L18.0608 14L17.0001 15.0607L16.4698 14.5303L12.0001 10.0607L7.53044 14.5303L7.00011 15.0607L5.93945 14L6.46978 13.4697L11.4698 8.46967Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="items-inner-group">
+                        <span class="title-inner">Блоки</span>
+                        <span class="title-inner">Плитки</span>
+                        <span class="title-inner">Бордюры</span>
+                    </div>
+                </div>
+                <div class="first-item-group">
+                    <div class="inner-item-group">
+                        <span class="title-first-group">Спец. техника</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4698 8.46967C11.7627 8.17678 12.2375 8.17678 12.5304 8.46967L17.5304 13.4697L18.0608 14L17.0001 15.0607L16.4698 14.5303L12.0001 10.0607L7.53044 14.5303L7.00011 15.0607L5.93945 14L6.46978 13.4697L11.4698 8.46967Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="items-inner-group">
+                        <span class="title-inner">Манипулятор</span>
+                        <span class="title-inner">Камаз</span>
+                        <span class="title-inner">Вышка</span>
+                    </div>
+                </div>
+                <div class="first-item-group">
+                    <div class="inner-item-group">
+                        <span class="title-first-group">О компании</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4698 8.46967C11.7627 8.17678 12.2375 8.17678 12.5304 8.46967L17.5304 13.4697L18.0608 14L17.0001 15.0607L16.4698 14.5303L12.0001 10.0607L7.53044 14.5303L7.00011 15.0607L5.93945 14L6.46978 13.4697L11.4698 8.46967Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="items-inner-group">
+                        <span class="title-inner">Контакты</span>
+                        <span class="title-inner">Отзывы</span>
+                    </div>
+                </div>            
+            </div>
+            <div class="line"></div>
+            <div class="container-copyright">
+                <span class="copyright-text">
+                    © 2025. ООО «ТСПК АРМАСТРОЙ»
+                </span>
+                    <img class="mylogo" src="{% static 'deps/images/mylogo.png' %}">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function() {
+      $('#openBtn').click(function() {
+        $('#overlay').fadeIn();
+        $('#sidePanel').animate({ right: '0' }, 400);
+      });
+    $('#closeBtn, #overlay').click(function() {
+        $('#sidePanel').animate({ right: '-400px' }, 400, function() {
+          $('#overlay').fadeOut();
+        });
+      });
+      $('.inner-item-group').on('click', function() {
+            const $parent = $(this).closest('.first-item-group');
+            const $icon = $(this).find('svg');
+            const $content = $parent.find('.items-inner-group');
+            $icon.toggleClass('rotate');
+            if($content.is(':visible')){
+                $content.slideUp(200);
+            }else{
+                $content
+                    .css('display', 'flex') // сначала принудительно задаем flex
+                    .hide()                // затем прячем (иначе slideDown не работает)
+                    .slideDown(200);      // а теперь плавно показываем
+            }
+        });
+        $('.openModal').on('click', function () {
+            $('.overlay').fadeIn();
+            $('.modal').fadeIn();
+        });
+        $('.closeModal, #overlay').on('click', function () {
+            $('.overlay').fadeOut();
+            $('.modal').fadeOut();
+        });
+        let currentSlide = 0;
+        const $slides = $('.review-slide');
+        const totalSlides = $slides.length;
+        function updateCounter() {
+            // Обновление текста счетчика с текущим номером слайда и общим количеством слайдов
+            $('.counter-text').text(`${currentSlide + 1}/${totalSlides}`);
+        }
+        function showSlide(index) {
+            updateCounter();
+            $slides.removeClass('active').hide();
+            $slides.eq(index).addClass('active').fadeIn();
+            // Управляем отображением кнопок
+            $('.prevReview').toggle(index !== 0);
+            $('.nextReview').toggle(index !== totalSlides - 1);
+        }
+        $('.nextReview').click(function () {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        });
+        $('.prevReview').click(function () {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        });
+        showSlide(currentSlide);
+    });
+  </script>

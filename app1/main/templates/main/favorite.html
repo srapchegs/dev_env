@@ -1,0 +1,104 @@
+{%  extends "main/base.html" %}
+
+{% load static %}
+{% block css %}
+<link href="{% static 'deps/css/style_items.css' %}" rel="stylesheet">
+{% endblock css %}
+{% block content%}
+<div class="container-items">
+    <div class="content-item">
+        <div class="catalog-item">
+            <span class="favorite-title">
+                Избранные товары
+            </span>
+            <div class="items-cards">
+                <div class="item-card">
+                    <div class="image-info">
+                        <img class="image-item" src="{% static 'deps/images/блок1.jpg' %}">
+                        <div class="price">
+                            <span class="price-text">94 ₽ / шт</span>
+                        </div>
+                        <div class="favorite">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M18.6 4H5.4C5.17909 4 5 4.17909 5 4.4V20.2227C5 20.5481 5.36775 20.7373 5.6325 20.5482L11.7675 16.1661C11.9066 16.0667 12.0934 16.0667 12.2325 16.1661L18.3675 20.5482C18.6323 20.7373 19 20.5481 19 20.2227V4.4C19 4.17909 18.8209 4 18.6 4Z" fill="#253A31"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 4.4C4.25 3.76487 4.76487 3.25 5.4 3.25H18.6C19.2351 3.25 19.75 3.76487 19.75 4.4V20.2227C19.75 21.1581 18.6927 21.7022 17.9316 21.1585L12 16.9217L6.06842 21.1585C5.30728 21.7022 4.25 21.1581 4.25 20.2227V4.4ZM5.75 4.75V19.5426L11.3316 15.5558C11.7314 15.2702 12.2686 15.2702 12.6684 15.5558L18.25 19.5426V4.75H5.75Z" fill="#253A31"/>
+                            </svg>
+                        </div>
+                        <div class="purchase">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0029 3.2511C12.4171 3.2511 12.7529 3.58689 12.7529 4.0011V11.2511H20.0029C20.4171 11.2511 20.7529 11.5869 20.7529 12.0011C20.7529 12.4153 20.4171 12.7511 20.0029 12.7511H12.7529V20.0011C12.7529 20.4153 12.4171 20.7511 12.0029 20.7511C11.5887 20.7511 11.2529 20.4153 11.2529 20.0011V12.7511H4.00293C3.58872 12.7511 3.25293 12.4153 3.25293 12.0011C3.25293 11.5869 3.58872 11.2511 4.00293 11.2511H11.2529V4.0011C11.2529 3.58689 11.5887 3.2511 12.0029 3.2511Z" fill="white"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="content-item-under-img">
+                        <span class="instock">
+                            Есть в наличии
+                        </span>
+                        <div class="heading-item">
+                            <span class="title-item">Керамзитоблок стеновой пустотелый М-35</span>
+                            <span class="text-item">390x290x188 мм</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="image-info">
+                        <img class="image-item" src="{% static 'deps/images/блок.jpg' %}">
+                        <div class="price">
+                            <span class="price-text">94 ₽ / шт</span>
+                        </div>
+                        <div class="favorite">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M18.6 4H5.4C5.17909 4 5 4.17909 5 4.4V20.2227C5 20.5481 5.36775 20.7373 5.6325 20.5482L11.7675 16.1661C11.9066 16.0667 12.0934 16.0667 12.2325 16.1661L18.3675 20.5482C18.6323 20.7373 19 20.5481 19 20.2227V4.4C19 4.17909 18.8209 4 18.6 4Z" fill="#253A31"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 4.4C4.25 3.76487 4.76487 3.25 5.4 3.25H18.6C19.2351 3.25 19.75 3.76487 19.75 4.4V20.2227C19.75 21.1581 18.6927 21.7022 17.9316 21.1585L12 16.9217L6.06842 21.1585C5.30728 21.7022 4.25 21.1581 4.25 20.2227V4.4ZM5.75 4.75V19.5426L11.3316 15.5558C11.7314 15.2702 12.2686 15.2702 12.6684 15.5558L18.25 19.5426V4.75H5.75Z" fill="#253A31"/>
+                            </svg>
+                        </div>
+                        <div class="purchase">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 12L9.76945 18.7695C9.89356 18.8936 10.0972 18.8851 10.2106 18.7511L21 6" stroke="#253A31" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="content-item-under-img">
+                        <span class="instock">
+                            Есть в наличии
+                        </span>
+                        <div class="heading-item">
+                            <span class="title-item">Керамзитоблок стеновой пустотелый М-35</span>
+                            <span class="text-item">390x290x188 мм</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item-card">
+                    <div class="image-info">
+                        <img class="image-item" src="{% static 'deps/images/блок1.jpg' %}">
+                        <div class="price">
+                            <span class="price-text">94 ₽ / шт</span>
+                        </div>
+                        <div class="favorite">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M18.6 4H5.4C5.17909 4 5 4.17909 5 4.4V20.2227C5 20.5481 5.36775 20.7373 5.6325 20.5482L11.7675 16.1661C11.9066 16.0667 12.0934 16.0667 12.2325 16.1661L18.3675 20.5482C18.6323 20.7373 19 20.5481 19 20.2227V4.4C19 4.17909 18.8209 4 18.6 4Z" fill="#253A31"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 4.4C4.25 3.76487 4.76487 3.25 5.4 3.25H18.6C19.2351 3.25 19.75 3.76487 19.75 4.4V20.2227C19.75 21.1581 18.6927 21.7022 17.9316 21.1585L12 16.9217L6.06842 21.1585C5.30728 21.7022 4.25 21.1581 4.25 20.2227V4.4ZM5.75 4.75V19.5426L11.3316 15.5558C11.7314 15.2702 12.2686 15.2702 12.6684 15.5558L18.25 19.5426V4.75H5.75Z" fill="#253A31"/>
+                            </svg>
+                        </div>
+                        <div class="purchase">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0029 3.2511C12.4171 3.2511 12.7529 3.58689 12.7529 4.0011V11.2511H20.0029C20.4171 11.2511 20.7529 11.5869 20.7529 12.0011C20.7529 12.4153 20.4171 12.7511 20.0029 12.7511H12.7529V20.0011C12.7529 20.4153 12.4171 20.7511 12.0029 20.7511C11.5887 20.7511 11.2529 20.4153 11.2529 20.0011V12.7511H4.00293C3.58872 12.7511 3.25293 12.4153 3.25293 12.0011C3.25293 11.5869 3.58872 11.2511 4.00293 11.2511H11.2529V4.0011C11.2529 3.58689 11.5887 3.2511 12.0029 3.2511Z" fill="white"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="content-item-under-img">
+                        <span class="instock">
+                            Есть в наличии
+                        </span>
+                        <div class="heading-item">
+                            <span class="title-item">Керамзитоблок стеновой пустотелый М-35</span>
+                            <span class="text-item">390x290x188 мм</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content%}

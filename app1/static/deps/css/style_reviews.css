@@ -1,0 +1,816 @@
+@font-face {
+    font-family: "NunitoSans"; 
+    src: url("../fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+} 
+@font-face {
+    font-family: "Dela Gothic One"; 
+    src: url("../fonts/Dela_Gothic_One/DelaGothicOne-Regular.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+} 
+body{
+    margin: 0;
+}
+.reviews-section{
+    display: flex;
+    padding: var(--stack-offset, 56px) var(--inline-offset, 16px);
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+}
+.reviews-container{
+    display: flex;
+    max-width: var(--grid-s-container, 400px);
+    flex-direction: column;
+    align-items: center;
+    gap: var(--stack-spacing-2xl, 32px);
+    flex: 1 0 0;
+}
+.header-reviews{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--stack-spacing-m, 16px);
+    align-self: stretch;
+}
+.title-review{
+    color: var(--gray-925, #2D313D);
+    font-family: "Dela Gothic One";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 28.8px */
+}
+.send-review{
+    display: flex;
+    padding: var(--aster-spacing-3x, 12px) var(--aster-spacing-6x, 24px);
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    gap: var(--aster-spacing-2x, 8px);
+    align-self: stretch;
+    border-radius: var(--border-radius-round, 9999px);
+    border: 1px solid var(--gray-950, #191D2C);
+    color: var(--gray-925, #2D313D);
+    font-family: "NunitoSans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    background-color: white;
+}
+.send-review:hover{
+    background: var(--gray-25, #F8F8F8);
+}
+.under-header-reviews{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: var(--stack-spacing-2xl, 32px);
+    align-self: stretch;
+}
+.first-block-review{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-l, 20px);
+    align-self: stretch;
+}
+.blocks-what{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-2xs, 8px);
+    align-self: stretch;
+}
+.what-like{
+    display: flex;
+    padding: var(--inside-offset-s, 16px) var(--inside-offset-l, 16px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-xs, 12px);
+    align-self: stretch;
+    border-radius: var(--border-radius-card-s, 8px);
+    background: var(--dark-green-500-base, #316650);
+}
+
+.what-like{
+    display: flex;
+    padding: var(--inside-offset-s, 16px) var(--inside-offset-l, 16px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-xs, 12px);
+    overflow: hidden;
+    align-self: stretch;
+    position: relative;
+    border-radius: var(--border-radius-card-s, 8px);
+    background: var(--light-green-500-base, #9CCA9C);
+}
+.what-like:first-child{
+    background: var(--dark-green-500-base, #316650);
+}
+.title-what{
+    color: var(--white, #FFF);
+    align-self: stretch;
+    font-family: "Dela Gothic One";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 21.6px */
+}
+.text-what{
+    color: var(--white, #FFF);
+    align-self: stretch;
+    /* body/tab mob/m 16-140 400 */
+    font-family: "NunitoSans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+}
+.what-like svg{
+    display: none;
+}
+.review-block{
+    display: flex;
+    padding: var(--inside-offset-l, 16px) var(--inside-offset-l, 16px) var(--inside-offset-s, 16px) var(--inside-offset-l, 16px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-xs, 12px);
+    align-self: stretch;
+    border-radius: var(--border-radius-card-s, 8px);
+    background: var(--white, #FFF);
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+.title-mini-review{
+    color: var(--gray-925, #2D313D);
+    align-self: stretch;
+    font-family: "Dela Gothic One";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 21.6px */
+}
+.description-review{
+    overflow: hidden;
+    color: var(--gray-900, #40444F);
+    text-overflow: ellipsis;
+    font-family: "NunitoSans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 27px */
+}
+.who-text{
+    display: flex;
+    padding: 0px var(--inside-offset-l, 16px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-3xs, 4px);
+    align-self: stretch;
+}
+.who-fi{
+    color: var(--gray-900, #40444F);
+    /* body/m-bold 18-150 700 */
+    font-family: "NunitoSans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 27px */
+}
+.city{
+    color: var(--gray-600, #85878D);
+    font-family: "NunitoSans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 18.2px */
+}
+.counter-navigation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gutter, 16px);
+    align-self: stretch;
+}
+.counter-title{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 10px;
+    flex: 1 0 0;
+}
+.counter-text{
+    color: var(--gray-100, #D7D8D9);
+    font-family: "Dela Gothic One";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 40px */
+    flex: 1 0 0;
+}
+.navigation-container{
+    display: flex;
+    align-items: center;
+    gap: var(--inline-spacing-s, 4px);
+}
+.nav-btn{
+    display: flex;
+    padding: var(--aster-spacing-3x, 12px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--aster-spacing-2x, 8px);
+    border-radius: var(--border-radius-round, 9999px);
+    border: 1px solid var(--gray-950, #191D2C);
+    background-color: unset;
+    cursor: pointer;
+    background: unset;
+}
+.nav-btn:hover{
+    background: var(--gray-25, #F8F8F8);
+}
+.overlay{
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8); /* затемнение */
+    z-index: 999;
+}
+.modal{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 1000;
+    border-radius: 20px;
+    background: var(--dark-green-500-base, #316650);
+    max-width: var(--grid-s-container, 400px);
+    padding: var(--stack-spacing-4xl, 48px) var(--inside-offset-l, 16px);
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    min-width: 270px;
+}
+.closeModal{
+    display: flex;
+    padding: var(--aster-spacing-3x, 12px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--aster-spacing-2x, 8px);
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    border-radius: var(--border-radius-round, 9999px);
+    border: 1px solid var(--white, #FFF);
+    background-color: unset;
+    cursor: pointer;
+}
+.under-close-block{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-l, 20px);
+    align-self: stretch;
+}
+.header-popup{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-s, 12px);
+    align-self: stretch;
+}
+.title-popup{
+    color: var(--white, #FFF);
+    font-family: "NunitoSans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%; /* 31.2px */
+    align-self: stretch;
+}
+.text-popup{
+    color: var(--white, #FFF);
+    align-self: stretch;
+    font-family: "NunitoSans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+}
+.review-form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-xs, 12px);
+    align-self: stretch;
+}
+.inputs-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-3xs, 4px);
+    align-self: stretch;
+}
+.textarea-rev{
+    display: flex;
+    height: 100px;
+    min-height: var(--textarea-l-height, 100px);
+    padding: 8px;
+    align-items: center;
+    gap: var(--scale-05-x-8, 8px);
+    align-self: stretch;
+    border-radius: var(--border-radius-input-rectangle, 12px);
+    border: 2px solid var(--alpha-gray-100, rgba(4, 13, 20, 0.10));
+    background: var(--white, #FFF);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.00) inset;
+    color: var(--gray-700, #6D7179);
+    font-family: "NunitoSans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+    resize: vertical;
+}
+.buttons-container-rev{
+    display: flex;
+    padding: var(--aster-spacing-3x, 12px) var(--aster-spacing-6x, 24px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--aster-spacing-2x, 8px);
+    align-self: stretch;
+    border-radius: var(--border-radius-round, 9999px);
+    background: var(--gray-50, #F1F1F2);
+    color: var(--gray-500, #9B9EA1);
+    font-family: "NunitoSans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    cursor: pointer;
+    transition: color 0.5s;
+    transition: background-color 0.5s;
+}
+.buttons-container-rev:hover{
+    transition: color 0.5s;
+    transition: background-color 0.5s;
+    background-color:#9B9EA1;
+    color: white;
+}
+.container-forms-btns{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--stack-spacing-3xs, 4px);
+    align-self: stretch;
+}
+.confidens{
+    color: var(--dark-green-100, #ADC2B9);
+    font-family: "NunitoSans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+}
+@media (min-width: 768px){
+
+    .header-popup{
+        gap: var(--stack-spacing-s, 16px);
+    }
+    .under-close-block{
+        gap: var(--stack-spacing-l, 24px);
+    }
+    .navigation-container{
+        display: flex;
+        align-items: center;
+        gap: var(--inline-spacing-s, 8px);
+    }
+    .what-like svg{
+        display: flex;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+    .title-what{
+        color: var(--white, #FFF);
+        align-self: stretch;
+        font-family: "Dela Gothic One";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 110%; /* 26.4px */
+    }
+    .text-what{
+        color: var(--white, #FFF);
+        align-self: stretch;
+        /* body/tab mob/m 16-140 400 */
+        font-family: "NunitoSans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%; /* 22.4px */
+    }
+    .title-review{
+        color: var(--gray-925, #2D313D);
+        flex: 1 0 0;
+        font-family: "Dela Gothic One";
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 110%; /* 35.2px */
+    }
+    .reviews-container{
+        display: flex;
+        max-width: var(--grid-s-container, 816px);
+        flex-direction: column;
+        align-items: center;
+        gap: var(--stack-spacing-2xl, 40px);
+        flex: 1 0 0;
+        
+    }
+    .reviews-section{
+        display: flex;
+        padding: var(--stack-offset, 80px) var(--inline-offset, 32px);
+        justify-content: center;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+    .header-reviews{
+        display: flex;
+        align-items: center;
+        gap: var(--gutter, 16px);
+        align-self: stretch;
+        flex-direction: row;
+    }
+    .under-header-reviews{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: var(--stack-spacing-2xl, 40px);
+        align-self: stretch;
+    }
+    .first-block-review{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-l, 24px);
+        align-self: stretch;
+    }
+    .blocks-what{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-2xs, 12px);
+        align-self: stretch;
+    }
+    .what-like{
+        display: flex;
+        padding: var(--inside-offset-s, 20px) var(--inside-offset-xl, 40px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xs, 12px);
+        align-self: stretch;
+        border-radius: var(--border-radius-card-s, 16px);
+    }
+    .review-block{
+        display: flex;
+        padding: var(--inside-offset-s, 20px) var(--inside-offset-xl, 40px) var(--inside-offset-l, 24px) var(--inside-offset-xl, 40px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xs, 12px);
+        align-self: stretch;
+        border-radius: var(--border-radius-card-s, 16px);
+        background: var(--white, #FFF);
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    }
+    .title-mini-review{
+        color: var(--gray-925, #2D313D);
+        align-self: stretch;
+        font-family: "Dela Gothic One";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 110%; /* 26.4px */
+    }
+    .description-review{
+        overflow: hidden;
+        color: var(--gray-900, #40444F);
+        text-overflow: ellipsis;
+        font-family: "NunitoSans";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%; /* 27px */
+    }
+    .who-text{
+        display: flex;
+        padding: 0px var(--inside-offset-xl, 40px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-3xs, 8px);
+        align-self: stretch;
+    }
+    .counter-text{
+        color: var(--gray-100, #D7D8D9);
+        font-family: "Dela Gothic One";
+        font-size: 56px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%; /* 56px */
+        flex: 1 0 0;
+    }
+    .modal{
+        width: 568px;
+        max-width: var(--grid-s-container, 816px);
+        padding: var(--stack-spacing-3xl, 48px) var(--inside-offset-xl, 40px);
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 20px;
+        background: var(--dark-green-500-base, #316650);
+    }
+    .inputs-container{
+        gap: var(--stack-spacing-3xs, 8px);
+    }
+}
+@media (min-width: 1024px){
+    .title-review{
+        color: var(--gray-950, #191D2C);
+    }
+    .reviews-container{
+        display: flex;
+        max-width: var(--grid-container, 1088px);
+        flex-direction: column;
+        align-items: center;
+        gap: var(--stack-spacing-2xl, 40px);
+        flex: 1 0 0;
+    }
+    .send-review{
+        font-size: 16px;
+    }
+    .under-header-reviews{
+        display: flex;
+        padding: var(--inside-offset-xl, 40px);
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: var(--stack-spacing-2xl, 40px);
+        align-self: stretch;
+        border-radius: var(--border-radius-conteiner-s, 24px);
+        background: var(--gray-25, #F8F8F8);
+
+    }
+    .blocks-what{
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row;
+        gap: var(--gutter, 16px);
+        align-self: stretch;
+    }
+    .what-like{
+        display: flex;
+        padding: var(--inside-offset-s, 20px) var(--inside-offset-xl, 40px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xs, 12px);
+        flex: 1 0 0;
+        align-self: stretch;
+        border-radius: var(--border-radius-card-s, 16px);
+    }
+    .modal{
+        padding: var(--stack-spacing-3xl, 48px) var(--inside-offset-xl, 40px);
+    }
+}
+@media (min-width: 1400px){
+    .buttons-container-rev{
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 142.857% */
+    }
+    .text-popup{
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%; /* 27px */
+    }
+    .title-popup{
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%; /* 38.4px */
+    }
+    .review-block{
+        display: flex;
+        padding: var(--inside-offset-s, 20px) var(--inside-offset-xl, 48px) var(--inside-offset-l, 32px) var(--inside-offset-xl, 48px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xs, 16px);
+        align-self: stretch;
+        border-radius: var(--border-radius-card-s, 20px);
+        background: var(--white, #FFF);
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    }
+    .title-what{
+        color: var(--white, #FFF);
+        align-self: stretch;
+        font-family: "Dela Gothic One";
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 110%; /* 35.2px */
+    }
+    .text-what{
+        color: var(--white, #FFF);
+        align-self: stretch;
+        /* body/tab mob/m 16-140 400 */
+        font-family: "NunitoSans";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%; /* 27px */
+    }
+    .first-block-review{
+        display: flex;
+        width: 1168px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-l, 32px);
+    }
+    .reviews-section{
+        display: flex;
+        padding: var(--stack-offset, 96px) var(--inline-offset, 32px);
+        justify-content: center;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+    .reviews-container{
+        display: flex;
+        max-width: var(--grid-s-container, 1264px);
+        flex-direction: column;
+        align-items: center;
+        gap: var(--stack-spacing-2xl, 48px);
+        flex: 1 0 0;
+    }
+    .header-reviews{
+        display: flex;
+        align-items: center;
+        gap: var(--gutter, 32px);
+        align-self: stretch;
+    }
+    .title-review{
+        color: var(--gray-950, #191D2C);
+        font-family: "Dela Gothic One";
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%; /* 48px */
+    }
+    .under-header-reviews{
+        display: flex;
+        padding: var(--inside-offset-xl, 40px);
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: var(--stack-spacing-2xl, 40px);
+        align-self: stretch;
+        border-radius: var(--border-radius-conteiner-s, 32px);
+    }
+    .what-like{
+        display: flex;
+        padding: var(--inside-offset-s, 20px) var(--inside-offset-xl, 48px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xs, 16px);
+        flex: 1 0 0;
+        align-self: stretch;
+        border-radius: var(--border-radius-card-s, 20px);
+    }
+    .title-mini-review{
+        color: var(--gray-925, #2D313D);
+        align-self: stretch;
+        font-family: "Dela Gothic One";
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 110%; /* 35.2px */
+    }
+    .description-review{
+        overflow: hidden;
+        color: var(--gray-900, #40444F);
+        text-overflow: ellipsis;
+        font-family: "NunitoSans";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%; /* 30px */
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 6;
+        align-self: stretch;
+    }
+    .who-text{
+        display: flex;
+        padding: 0px var(--inside-offset-xl, 48px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-3xs, 8px);
+    }
+    .city{
+        font-size: 16px;
+    }
+    .counter-navigation{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--gutter, 32px);
+        align-self: stretch;
+    }
+    .counter-text{
+        color: var(--gray-100, #D7D8D9);
+        font-family: "Dela Gothic One";
+        font-size: 72px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%; /* 72px */
+        flex: 1 0 0;
+    }
+    .nav-btn{
+        display: flex;
+        padding: var(--aster-spacing-4x, 16px);
+        justify-content: center;
+        align-items: center;
+        gap: var(--aster-spacing-2x, 8px);
+    }
+    .modal{
+        padding: var(--stack-spacing-3xl, 48px) var(--inside-offset-xl, 48px);
+    }
+    .review-form{
+        gap: var(--stack-spacing-xs, 16px);
+    }
+    .container-forms-btns{
+        gap: var(--stack-spacing-3xs, 10px);
+    }
+    .confidens{
+        color: var(--dark-green-100, #ADC2B9);
+        font-family: "NunitoSans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 142.857% */
+    }
+}
+@media (min-width: 1600px){
+    .first-block-review{
+        display: flex;
+        width: 1312px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-l, 32px);
+    }
+    .reviews-container{
+        display: flex;
+        max-width: var(--grid-container, 1408px);
+        flex-direction: column;
+        align-items: center;
+        gap: var(--stack-spacing-2xl, 48px);
+        flex: 1 0 0;
+    }
+    .under-header-reviews{
+        display: flex;
+        padding: var(--inside-offset-xl, 48px);
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: var(--stack-spacing-2xl, 48px);
+        align-self: stretch;
+    }
+    .what-like{
+        display: flex;
+        padding: var(--inside-offset-s, 20px) var(--inside-offset-xl, 48px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--stack-spacing-xs, 16px);
+        flex: 1 0 0;
+        align-self: stretch;
+        border-radius: var(--border-radius-card-s, 20px);
+    }
+    .modal{
+        padding: var(--stack-spacing-3xl, 56px) var(--inside-offset-xl, 48px);
+    }
+}
+.review-slide {
+    display: none;
+    transition: display 0.5s;
+}
+.review-slide.active {
+    display: flex;
+    transition: display 0.5s;
+}
