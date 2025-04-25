@@ -11,11 +11,6 @@ def index(request):
     }
     return render(request, 'main/index.html', context)
 
-def catalog(request):
-    context = {
-        'title': "Блоки"
-    }
-    return render(request, 'main/catalog.html', context)
 
 def bucket(request):
     context = {
@@ -23,11 +18,6 @@ def bucket(request):
     }
     return render(request, 'main/bucket.html', context)
 
-def detail(request):
-    context = {
-        'title': "Детальная страница товара"
-    }
-    return render(request, 'main/detail.html', context)
 
 def purchase(request):
     context = {

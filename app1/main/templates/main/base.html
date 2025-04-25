@@ -38,13 +38,13 @@
         <div class="header-div">
             <div class="flex-container">
                 <div class="logo-header">
-                    <a href="/" >
+                    <a href="{% url "main:index" %}" >
                     <img src="{% static 'deps/images/лого.png' %}">
                     </a>
                 </div>
                 <div class="item-group">
                     <div class="item">
-                        <a href="/catalog/" class="item-text">Блоки</a>
+                        <a href="{% url "catalog:catalog" %}" class="item-text">Блоки</a>
                     </div>
                     <div class="item">
                         <span class="item-text">Плитки</span>
@@ -53,14 +53,14 @@
                         <span class="item-text">Бордюры</span>
                     </div>
                     <div class="item">
-                        <a href="/cars/" class="item-text">Спец. техника</a>
+                        <a href="{% url "main:cars" %}" class="item-text">Спец. техника</a>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M10.5745 12.7764C10.2553 13.0745 9.74473 13.0745 9.42547 12.7764L5.7484 9.34304C5.22255 8.85204 5.58703 8 6.32293 8L13.6771 8C14.413 8 14.7775 8.85204 14.2516 9.34304L10.5745 12.7764Z" fill="#9CCA9C"/>
                         </svg>
                         <div class="block">
-                            <a href="/cars/" class="item-text2">Камаз</a>
-                            <a href="/cars/" class="item-text2">Манипулятор</a>
-                            <a href="/cars/" class="item-text2">Вышка</a>
+                            <a href="{% url "main:cars" %}" class="item-text2">Камаз</a>
+                            <a href="{% url "main:cars" %}" class="item-text2">Манипулятор</a>
+                            <a href="{% url "main:cars" %}" class="item-text2">Вышка</a>
                         </div>
                     </div>
                     <div class="item">
@@ -69,8 +69,8 @@
                             <path d="M10.5745 12.7764C10.2553 13.0745 9.74473 13.0745 9.42547 12.7764L5.7484 9.34304C5.22255 8.85204 5.58703 8 6.32293 8L13.6771 8C14.413 8 14.7775 8.85204 14.2516 9.34304L10.5745 12.7764Z" fill="#9CCA9C"/>
                         </svg>
                         <div class="block">
-                            <a href="/contacts/" class="item-text2">Контакты</a>
-                            <a href="/reviews/" class="item-text2">Отзывы</a>
+                            <a href="{% url "main:contacts" %}" class="item-text2">Контакты</a>
+                            <a href="{% url "main:reviews" %}" class="item-text2">Отзывы</a>
                         </div>
                     </div>
                 </div>
@@ -80,13 +80,13 @@
                             <path d="M3.33301 15H16.6663M3.33301 10H16.6663M3.33301 5H16.6663" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                    <a href="/purchase/" type="button" class="button-menu hide1">
+                    <a href="{% url "main:purchase" %}" type="button" class="button-menu hide1">
                         <img class="bucket" src="{% static 'deps/images/lk2.png' %}">
                     </a>
-                    <a href="/favorite/" type="button" class="button-menu hide2">
+                    <a href="{% url "main:favorite" %}" type="button" class="button-menu hide2">
                         <img class="bucket" src="{% static 'deps/images/fav.png' %}">
                     </a>
-                    <a href="/bucket/" type="button" class="button-menu">
+                    <a href="{% url "main:bucket" %}" type="button" class="button-menu">
                         <img class="bucket" src="{% static 'deps/images/корзина.png' %}">
                     </a>   
                 </div>
@@ -102,7 +102,7 @@
             
             <div class="right-menu">
                 <img class="lk" src="{% static 'deps/images/lk.png' %}"></br>
-                <a href="/purchase/" class="lk-text">Личный кабинет</a>
+                <a href="{% url "main:purchase" %}" class="lk-text">Личный кабинет</a>
                 <div class="line-lk">
                 </div>
                 <div class="right-menu-items">
