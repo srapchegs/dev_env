@@ -1,0 +1,153 @@
+{% comment %} {%  extends "main/base.html" %}
+{% load static %}
+{% block style %} {% endcomment %}
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  form {
+    display: none;
+    flex-direction: column;
+  }
+
+  form.active {
+    display: flex;
+  }
+
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  .toggle-link {
+    text-align: center;
+    margin-top: 15px;
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+  }
+
+  .toggle-link:hover {
+    color: #0056b3;
+  }
+</style>
+{% comment %} {% endblock style%}
+{% block content %} {% endcomment %}
+  <div class="container">
+    <h2 id="form-title">Авторизация</h2>
+    <form id="login-form" class="active" action="{% url 'user:login' %}" method="post" >
+      {% csrf_token %}
+      {{form}}
+      {% comment %} <label for="login-phone">Телефон</label>
+      <input type="tel" id="login-phone" required>
+      <label for="login-password">Пароль</label>
+      <input type="password" id="login-password" required>{% endcomment %}
+      <button type="submit">Войти</button> 
+    </form>
+    <div class="toggle-link" onclick="toggleForms()">
+      Нет аккаунта? Зарегистрироваться
+    </div>
+  </div>
+  <script>
+    const loginForm = document.getElementById("login-form");
+    const registerForm = document.getElementById("register-form");
+    const toggleLink = document.querySelector(".toggle-link");
+    const formTitle = document.getElementById("form-title");
+    function toggleForms() {
+      const isLoginVisible = loginForm.classList.contains("active");
+      loginForm.classList.toggle("active");
+      registerForm.classList.toggle("active");
+      formTitle.textContent = isLoginVisible ? "Регистрация" : "Авторизация";
+      toggleLink.textContent = isLoginVisible
+        ? "Уже есть аккаунт? Войти"
+        : "Нет аккаунта? Зарегистрироваться";
+    }
+    // Валидация номера телефона
+    function isValidPhone(phone) {
+      return /^\d{11}$/.test(phone);
+    }
+    // Валидация пароля
+    function isValidPassword(password) {
+      return password.length >= 8;
+    }
+    // Валидация ФИО (три слова)
+    function isValidFullName(fullName) {
+      return fullName.trim().split(/\s+/).length === 3;
+    }
+    registerForm.addEventListener("submit", function (e) {
+      const name = document.getElementById("register-name").value;
+      const phone = document.getElementById("register-phone").value;
+      const password = document.getElementById("register-password").value;
+      if (!isValidFullName(name)) {
+        alert("ФИО должно состоять из трёх слов.");
+        e.preventDefault();
+      } else if (!isValidPhone(phone)) {
+        alert("Телефон должен содержать ровно 11 цифр.");
+        e.preventDefault();
+      } else if (!isValidPassword(password)) {
+        alert("Пароль должен содержать минимум 8 символов.");
+        e.preventDefault();
+      }
+    });
+    loginForm.addEventListener("submit", function (e) {
+      const phone = document.getElementById("login-phone").value;
+      const password = document.getElementById("login-password").value;
+      if (!isValidPhone(phone)) {
+        alert("Телефон должен содержать ровно 11 цифр.");
+        e.preventDefault();
+      } else if (!isValidPassword(password)) {
+        alert("Пароль должен содержать минимум 8 символов.");
+        e.preventDefault();
+      }
+    });
+  </script>  
+  {% comment %} {% endblock content %} {% endcomment %}

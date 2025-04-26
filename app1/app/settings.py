@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main',
     'product',
     'cars',
+    'users',
     'reviews',
 ]
 
@@ -77,21 +78,15 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'home',
-        'USER': 'home',
+        'NAME': 'db_arma2',
+        'USER': 'postgres',
         'PASSWORD': "12345",
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5438',
     }
 }
 
@@ -144,3 +139,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'users.User'

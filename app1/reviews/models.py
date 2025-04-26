@@ -8,7 +8,6 @@ class Reviews(models.Model):
     city = models.CharField(max_length=200, verbose_name="Город")
     what_likes = models.TextField(verbose_name="Что понравилось")
     what_modern = models.TextField(verbose_name="Что можно улучшить")
-    what_modern = models.TextField(verbose_name="Что можно улучшить")
     is_published = models.BooleanField(default=False, verbose_name="Опубликовано")
 
     def __str__(self):
