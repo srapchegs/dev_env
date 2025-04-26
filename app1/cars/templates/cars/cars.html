@@ -11,113 +11,45 @@
             </div>
             <div class="swiper-slider">
                 <div class="brand-routes__slider-wrapper swiper-wrapper">
-                    <div class="brand-routes__card swiper-slide">
-                        <div class="brand-routes__card-inner">
-                            <div class="brand-routes__card-image-container">
-                                <div class="brand-routes__card-image">
-                                    <div class="brand-routes__card-image-box">
-                                        <img src="{% static 'deps/images/Автовышка Hyundai HD78 28 метров (фон удален).png' %}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="activity-tour__info">
-                                <div class="activity-tour__description">
-                                    <div class="activity-tour__heading">
-                                        <span class="activity-tour__list-number">1 - 3</span>
-                                        <span class="activity-tour__list-title">Автовышка Hyundai HD78</span>
-                                    </div>
-                                    <div class="activity-tour__text">
-                                        <span class="activity-tour__description-text">Автовышка Hyundai HD78 — это надежная и универсальная спецтехника, идеально подходящая для высотных работ в городских условиях. Благодаря телескопической стреле с рабочей высотой подъема до 28 метров и грузоподъемностью до 300 кг, она обеспечивает эффективное выполнение задач на высоте. Компактные габариты и маневренность позволяют использовать автовышку в стесненных пространствах, а современная система безопасности и автоматическая ориентация люльки гарантируют комфорт и защиту оператора. Hyundai HD78 — оптимальный выбор для строительных, монтажных и коммунальных работ.​
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="activity-tour__buttons">
-                                    <div class="activity-tour__price-line">
-                                            <span class="activity-tour__price">1200 ₽</span>
-                                        <span class="activity-tour__price-description">цена за час</span>
-                                    </div>
-                                    <div class="activity-tour__order-buttons">
-                                        <div class="activity-tour__order-button">
-                                            <button class="openModal activity-tour__order-button--master">
-                                                Отправить заявку
-                                            </button>
+                    {% for car in cars %}
+                        <div class="brand-routes__card swiper-slide">
+                            <div class="brand-routes__card-inner">
+                                <div class="brand-routes__card-image-container">
+                                    <div class="brand-routes__card-image">
+                                        <div class="brand-routes__card-image-box">
+                                            <img src="{{  car.image.url }}">
                                         </div>
-            
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="brand-routes__card swiper-slide">
-                        <div class="brand-routes__card-inner">
-                            <div class="brand-routes__card-image-container">
-                                <div class="brand-routes__card-image">
-                                    <div class="brand-routes__card-image-box">
-                                        <img src="{% static 'deps/images/manipulyator-hyundai-tadano-ze500-150 (фон удален).png' %}">
+                                <div class="activity-tour__info">
+                                    <div class="activity-tour__description">
+                                        <div class="activity-tour__heading">
+                                            <span class="activity-tour__list-number">{{ forloop.counter }} - {{ cars|length }}</span>
+                                            <span class="activity-tour__list-title">{{car.name}}</span>
+                                        </div>
+                                        <div class="activity-tour__text">
+                                            <span class="activity-tour__description-text">{{ car.description }}
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="activity-tour__info">
-                                <div class="activity-tour__description">
-                                    <div class="activity-tour__heading">
-                                        <span class="activity-tour__list-number">2 - 3</span>
-                                        <span class="activity-tour__list-title">Манипулятор Hyundai Tadano ZE500 150</span>
-                                    </div>
-                                    <div class="activity-tour__text">
-                                        <span class="activity-tour__description-text">Манипулятор Hyundai Tadano ZE500 150 — это мощная и надежная спецтехника, идеально подходящая для погрузочно-разгрузочных работ и транспортировки грузов до 10 тонн. Оснащённый краново-манипуляторной установкой Tadano ZE500, он обеспечивает высокую производительность и безопасность при выполнении различных задач.​</span>
-                                    </div>
-                                </div>
-                                <div class="activity-tour__buttons">
-                                    <div class="activity-tour__price-line">
-                                            <span class="activity-tour__price">1200 ₽</span>
-                                        <span class="activity-tour__price-description">цена за час</span>
-                                    </div>
-                                    <div class="activity-tour__order-buttons">
-                                        <div class="activity-tour__order-button">
-                                            <button class="openModal activity-tour__order-button--master">
-                                                Отправить заявку
-                                            </button>
+                                    <div class="activity-tour__buttons">
+                                        <div class="activity-tour__price-line">
+                                                <span class="activity-tour__price">{{ car.price }} ₽</span>
+                                            <span class="activity-tour__price-description">цена за час</span>
+                                        </div>
+                                        <div class="activity-tour__order-buttons">
+                                            <div class="activity-tour__order-button">
+                                                <button class="openModal activity-tour__order-button--master">
+                                                    Отправить заявку
+                                                </button>
+                                            </div>
+                
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="brand-routes__card swiper-slide">
-                        <div class="brand-routes__card-inner">
-                            <div class="brand-routes__card-image-container">
-                                <div class="brand-routes__card-image">
-                                    <div class="brand-routes__card-image-box">
-                                        <img src="{% static 'deps/images/камаз.png' %}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="activity-tour__info">
-                                <div class="activity-tour__description">
-                                    <div class="activity-tour__heading">
-                                        <span class="activity-tour__list-number">3 - 3</span>
-                                        <span class="activity-tour__list-title">КАМАЗ 365115</span>
-                                    </div>
-                                    <div class="activity-tour__text">
-                                        <span class="activity-tour__description-text">КАМАЗ 365115 — мощный и надежный грузовик для перевозок в любых условиях. Отличается высокой проходимостью, экономичным двигателем и комфортной кабиной. Идеален для тяжелой работы и бездорожья.</span>
-                                    </div>
-                                </div>
-                                <div class="activity-tour__buttons">
-                                    <div class="activity-tour__price-line">
-                                            <span class="activity-tour__price">1200 ₽</span>
-                                        <span class="activity-tour__price-description">цена за час</span>
-                                    </div>
-                                    <div class="activity-tour__order-buttons">
-                                        <div class="activity-tour__order-button">
-                                            <button class="openModal activity-tour__order-button--master">
-                                                Отправить заявку
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
                 <div class="slider__button-prevs js-slider-button-prev">
                     <svg xmlns="http://www.w3.org/2000/svg" width="6" height="12" viewBox="0 0 6 12" fill="none">

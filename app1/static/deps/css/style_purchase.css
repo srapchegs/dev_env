@@ -158,6 +158,10 @@ svg {
 
 }
 @media (min-width: 768px) {
+    .container-bucket{
+        margin: auto;
+        width: 656px;
+    }
     .group-order{
         display: flex
         ;
@@ -183,8 +187,16 @@ svg {
     }
 }
 @media (min-width: 1024px) {
+    .container-bucket{
+        margin: auto;
+        width: 860px;
+    }
 }
 @media (min-width: 1400px) {
+    .container-bucket{
+        margin: auto;
+        width: 1200px;
+    }
     .title-orders{
         color: var(--black, #1F2238);
         font-family: "NunitoSans";
@@ -207,7 +219,10 @@ svg {
     
 }
 @media (min-width: 1600px) {
-    
+    .container-bucket{
+        margin: auto;
+        width: 1320px;
+    }
 }
 @font-face {
     font-family: "NunitoSans"; 

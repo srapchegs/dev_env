@@ -28,17 +28,20 @@
 <div class="container-items">
     <div class="content-item">
         <div class="catalog-item">
-            <div class="filter-panel">
-                <select class="select-items">
-                    <option>Керамзитоблок стеновой</option>
-                    <option>Керамзитоблок M500</option>
-                    <option>Керамзитоблок M350</option>
+            <form method="get" class="filter-panel" id="filterForm">
+                <select name="subcategory" class="select-items" onchange="document.getElementById('filterForm').submit()">
+                    <option value="">Все подкатегории</option>
+                    {% for subcategory in subcategories %}
+                        <option value="{{ subcategory.slug }}" {% if request.GET.subcategory == subcategory.slug %}selected{% endif %}>
+                            {{ subcategory.name }}
+                        </option>
+                    {% endfor %}
                 </select>
-                <select class="select-items">
-                    <option>По возрастанию</option>
-                    <option>По убыванию</option>
+                <select name="sort" class="select-items" onchange="document.getElementById('filterForm').submit()">
+                    <option value="asc" {% if request.GET.sort == 'asc' %}selected{% endif %}>По возрастанию цены</option>
+                    <option value="desc" {% if request.GET.sort == 'desc' %}selected{% endif %}>По убыванию цены</option>
                 </select>
-            </div>
+            </form>
             <div class="items-cards">
                 {% for product in products %}
                 <a href="{% url 'catalog:detail' product.category.category.slug product.slug %}" class="item-card">
@@ -72,5 +75,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>    
 {% endblock content %}

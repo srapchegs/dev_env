@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main',
     'product',
     'cars',
+    'reviews',
 ]
 
 MIDDLEWARE = [
