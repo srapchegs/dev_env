@@ -1,7 +1,6 @@
 {% load static %}
 {% load products_tags %}
 {% load carts_tags %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +15,8 @@
     <link href="{% static 'deps/css/style_reviews.css' %}" rel="stylesheet">
     <link href="{% static 'deps/css/style_purchase.css' %}" rel="stylesheet">
     <link href="{% static 'deps/css/style_bucket.css' %}" rel="stylesheet">
+    <link href="{% static 'deps/css/style_purchase.css' %}" rel="stylesheet">
+    <script async src="{% static 'deps/js/jquery_ajax.js' %}"></script>
     {% block css %}
     {% endblock css %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -91,11 +92,8 @@
                     <a href="{% url 'carts:carts' %}" type="button" class="button-menu" style="position: relative;">
                         <img class="bucket" src="{% static 'deps/images/корзина.png' %}">
                         {% if request.user.is_authenticated %}
-                            {% with cart_count=request.user.cart_set.count %}
-                                {% if cart_count > 0 %}
-                                    <span class="cart-count">{{ cart_count }}</span>
-                                {% endif %}
-                            {% endwith %}
+                            {% tag_cart request as cart_count %}
+                            <span class="cart-count" id="goods-in-cart-count">{{ cart_count }}</span>
                         {% endif %}
                     </a> 
                 </div>
