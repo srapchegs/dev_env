@@ -24,6 +24,7 @@ urlpatterns = [
     path('cars/', include('cars.urls', namespace="cars")),  # Ensure correct namespace here
     path('reviews/', include('reviews.urls', namespace="reviews")),  # Ensure correct namespace here
     path('user/', include('users.urls', namespace="user")),  # Ensure correct namespace here
+    path('carts/', include('carts.urls', namespace="carts")),  # Ensure correct namespace here
     path('', include('main.urls', namespace="main")),
     path('', include('product.urls', namespace="catalog")),  # убрали 'category/'
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

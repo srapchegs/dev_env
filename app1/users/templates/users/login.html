@@ -87,15 +87,17 @@
     <form id="login-form" class="active" action="{% url 'user:login' %}" method="post" >
       {% csrf_token %}
       {{form}}
-      {% comment %} <label for="login-phone">Телефон</label>
-      <input type="tel" id="login-phone" required>
-      <label for="login-password">Пароль</label>
-      <input type="password" id="login-password" required>{% endcomment %}
+      {% comment %} 
+        <label for="login-phone">Телефон</label>
+        <input type="tel" id="login-phone" required>
+        <label for="login-password">Пароль</label>
+        <input type="password" id="login-password" required>
+      {% endcomment %}
       <button type="submit">Войти</button> 
     </form>
-    <div class="toggle-link" onclick="toggleForms()">
+    <a href="{% url "user:registration" %}" class="toggle-link" onclick="toggleForms()">
       Нет аккаунта? Зарегистрироваться
-    </div>
+    </a>
   </div>
   <script>
     const loginForm = document.getElementById("login-form");

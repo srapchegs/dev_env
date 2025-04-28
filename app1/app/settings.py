@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'cars',
     'users',
     'reviews',
+    'carts',
 ]
 
 MIDDLEWARE = [

@@ -47,7 +47,7 @@
                                 {{product.price}} ₽ шт.
                             </span>
                             <div class="buttons-container-detail">
-                                <button class="order-button-detail">В корзину</button>
+                                <a href="{% url 'carts:cart_add' product.slug %}" class="order-button-detail">В корзину</a>
                                 <div class="favorite">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                                         <path d="M5.75 19.875L11.332 15.8887L11.4873 15.7949C11.8097 15.6342 12.1903 15.6342 12.5127 15.7949L12.668 15.8887L18.25 19.875V5.08301H5.75V19.875ZM19.75 20.5557C19.75 21.4326 18.8205 21.966 18.0771 21.5811L17.9316 21.4912L12 17.2539L6.06836 21.4912C5.30721 22.0349 4.25 21.491 4.25 20.5557V4.7334C4.25 4.09827 4.76526 3.58301 5.40039 3.58301H18.5996C19.2347 3.58301 19.75 4.09827 19.75 4.7334V20.5557Z" fill="#1F2238"/>

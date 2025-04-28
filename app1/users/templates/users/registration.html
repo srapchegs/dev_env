@@ -79,22 +79,82 @@
     .toggle-link:hover {
       color: #0056b3;
     }
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    
+    input:invalid {
+      border: 1px solid red;
+    }
   </style>
 
   <div class="container">
     <h2 id="form-title">Регистрация</h2>
-    <form id="register-form">
-      <label for="register-name">ФИО</label>
-      <input type="text" id="register-name" required>
-      <label for="register-address">Адрес доставки</label>
-      <input type="text" id="register-address">
-      <label for="register-phone">Телефон</label>
-      <input type="tel" id="register-phone" required>
-      <label for="register-password">Пароль</label>
-      <input type="password" id="register-password" required>
+    <form id="register-form" action="{% url "user:registration" %}" method="post">
+      {% csrf_token %}
+      
+      <label for="id_first_name">Фамилия</label>
+      <input type="text" id="id_first_name" name="first_name" required value="{{ form.first_name.value|default_if_none:'' }}">
+      {% if form.first_name.errors %}
+        <div class="error">{{ form.first_name.errors.0 }}</div>
+      {% endif %}
+  
+      <label for="id_last_name">Имя</label>
+      <input type="text" id="id_last_name" name="last_name" required value="{{ form.last_name.value|default_if_none:'' }}">
+      {% if form.last_name.errors %}
+        <div class="error">{{ form.last_name.errors.0 }}</div>
+      {% endif %}
+  
+      <label for="id_otchestvo">Отчество</label>
+      <input type="text" id="id_otchestvo" name="otchestvo" required value="{{ form.otchestvo.value|default_if_none:'' }}">
+      {% if form.otchestvo.errors %}
+        <div class="error">{{ form.otchestvo.errors.0 }}</div>
+      {% endif %}
+  
+      <label for="id_username">Логин</label>
+      <input type="text" id="id_username" name="username" required value="{{ form.username.value|default_if_none:'' }}">
+      {% if form.username.errors %}
+        <div class="error">{{ form.username.errors.0 }}</div>
+      {% endif %}
+  
+      <label for="id_email">Почта</label>
+      <input type="email" id="id_email" name="email" required value="{{ form.email.value|default_if_none:'' }}">
+      {% if form.email.errors %}
+        <div class="error">{{ form.email.errors.0 }}</div>
+      {% endif %}
+  
+      <label for="id_address">Адрес доставки</label>
+      <input type="text" id="id_address" name="address" required value="{{ form.address.value|default_if_none:'' }}">
+      {% if form.address.errors %}
+        <div class="error">{{ form.address.errors.0 }}</div>
+      {% endif %}
+  
+      <label for="id_phone">Телефон</label>
+      <input type="tel" id="id_phone" name="phone" required 
+             pattern="\d{11}" minlength="11" maxlength="11" 
+             placeholder="89997771166" value="{{ form.phone.value|default_if_none:'' }}">
+      {% if form.phone.errors %}
+        <div class="error">{{ form.phone.errors.0 }}</div>
+      {% endif %}
+  
+      <label for="id_password1">Пароль</label>
+      <input type="password" id="id_password1" name="password1" required>
+      {% if form.password1.errors %}
+        <div class="error">{{ form.password1.errors.0 }}</div>
+      {% endif %}
+  
+      <label for="id_password2">Повторите пароль</label>
+      <input type="password" id="id_password2" name="password2" required>
+      {% if form.password2.errors %}
+        <div class="error">{{ form.password2.errors.0 }}</div>
+      {% endif %}
+  
       <button type="submit">Зарегистрироваться</button>
     </form>
   </div>
+  
   <script>
     const loginForm = document.getElementById("login-form");
     const registerForm = document.getElementById("register-form");

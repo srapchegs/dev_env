@@ -81,6 +81,7 @@ button{
 }
 .button-group{
     display: flex;
+    position: relative;
     align-items: flex-start;
     gap: var(--inline-spacing-m, 8px);
 }
@@ -188,6 +189,23 @@ button{
 .lk{
     width: 70px;
 }
+.cart-count {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    transform: translate(50%, -50%); /* аккуратно сместить кружок за пределы угла */
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 0 2px white; /* белая обводка вокруг кружка, чтобы было красивее */
+}
 .right-menu{
     display: flex;
     width: 100%;
@@ -208,7 +226,9 @@ button{
     width: 100%;
     font-size: 22px;
 }
-.right-menu-items span{
+.right-menu-items a{
+    
+    color: black;
     margin-left: -22px;
     font-size: 22px;
     font-family: "NunitoSans";

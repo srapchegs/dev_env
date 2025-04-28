@@ -8,6 +8,10 @@
     border-radius: var(--border-radius-conteiner, 24px);
     background: var(--dark-green-900, #253A31);
 }
+.flex-container-title2{
+    background: unset;
+}
+
 body{
     margin:0;
 }
@@ -264,3 +268,9 @@ src: url("../fonts/Dela_Gothic_One/DelaGothicOne-Regular.ttf") format("truetype"
 font-style: normal; 
 font-weight: normal; 
 } 
+.title-catalog2{
+    color: #253A31;
+}
+.description-catalog2{
+    color: #253A31;
+}

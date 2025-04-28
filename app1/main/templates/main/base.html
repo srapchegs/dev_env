@@ -1,5 +1,8 @@
 {% load static %}
 {% load products_tags %}
+{% load carts_tags %}
+
+{% comment %} {% tag_cart request as carts %%} {% endcomment %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,15 +84,22 @@
                             <path d="M3.33301 15H16.6663M3.33301 10H16.6663M3.33301 5H16.6663" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                    <a href="{% url "main:purchase" %}" type="button" class="button-menu hide1">
+                    <a href="{% if user.first_name %} {% url "main:purchase" %}{% else %} {% url "users:login" %} {% endif %}" type="button" class="button-menu hide1">
                         <img class="bucket" src="{% static 'deps/images/lk2.png' %}">
                     </a>
                     <a href="{% url "main:favorite" %}" type="button" class="button-menu hide2">
                         <img class="bucket" src="{% static 'deps/images/fav.png' %}">
                     </a>
-                    <a href="{% url "main:bucket" %}" type="button" class="button-menu">
+                    <a href="{% url 'carts:carts' %}" type="button" class="button-menu" style="position: relative;">
                         <img class="bucket" src="{% static 'deps/images/корзина.png' %}">
-                    </a>   
+                        {% if request.user.is_authenticated %}
+                            {% with cart_count=request.user.cart_set.count %}
+                                {% if cart_count > 0 %}
+                                    <span class="cart-count">{{ cart_count }}</span>
+                                {% endif %}
+                            {% endwith %}
+                        {% endif %}
+                    </a> 
                 </div>
             </div>
         </div>
@@ -103,16 +113,21 @@
             
             <div class="right-menu">
                 <img class="lk" src="{% static 'deps/images/lk.png' %}"></br>
-                <a href="{% url "main:purchase" %}" class="lk-text">Личный кабинет</a>
+                {% if user.first_name %}                
+                    <a href="{% url "main:purchase" %}" class="lk-text">{{ user.first_name }} {{ user.last_name  }}</a>
+                {% else %}
+                    <a href="{% url "users:login" %}" class="lk-text">Личный кабинет</a>
+                {% endif %} 
                 <div class="line-lk">
                 </div>
                 <div class="right-menu-items">
-                    <span>Блоки</span>
-                    <span>Плитки</span>
-                    <span>Бордюры</span>
-                    <span>Спец. техника</span>
-                    <span>Избранное</span>
-                    <span>О компании</span>
+                    <a href="{% url 'catalog:catalog' category_slug='blocks' %}">Блоки</a>
+                    <a href="{% url 'catalog:catalog' category_slug='bruschatka' %}">Плитки</a>
+                    <a href="{% url 'catalog:catalog' category_slug='bordyury' %}">Бордюры</a>
+                    <a href="{% url "cars:cars" %}">Спец. техника</a>
+                    <a href="{% url "main:contacts" %}">Контакты</a>
+                    <a href="{% url "reviews:reviews" %}">Отзывы</a>
+                    <a href="{% url "users:logout" %}">Выйти</a>
                 </div>
             </div>
         </div>

@@ -44,24 +44,24 @@
             </form>
             <div class="items-cards">
                 {% for product in products %}
-                <a href="{% url 'catalog:detail' product.category.category.slug product.slug %}" class="item-card">
+                <div href="{% url 'catalog:detail' product.category.category.slug product.slug %}" class="item-card">
                     <div class="image-info">
                         <img class="image-item" src="{{ product.image.url }}">
-                        <div class="price">
+                        <a href="{% url 'catalog:detail' product.category.category.slug product.slug %}" class="price">
                             <span class="price-text">{{product.price}} ₽ / шт</span>
-                        </div>
+                        </a>
                         <div class="favorite">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25293 4.4011C4.25293 3.76597 4.7678 3.2511 5.40293 3.2511H18.6029C19.2381 3.2511 19.7529 3.76597 19.7529 4.4011V20.2238C19.7529 21.1592 18.6957 21.7033 17.9345 21.1596L12.0029 16.9228L6.07135 21.1596C5.3102 21.7033 4.25293 21.1592 4.25293 20.2238V4.4011ZM5.75293 4.7511V19.5437L11.3345 15.5569C11.7344 15.2713 12.2715 15.2713 12.6714 15.5569L18.2529 19.5437V4.7511H5.75293Z" fill="white"/>
                             </svg>
                         </div>
-                        <div class="purchase">
+                        <a href="{% url 'carts:cart_add' product.slug %}" class="purchase">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path d="M3 12L9.76945 18.7695C9.89356 18.8936 10.0972 18.8851 10.2106 18.7511L21 6" stroke="#253A31" stroke-width="1.5" stroke-linecap="round"/>
                             </svg>
-                        </div>
+                        </a>
                     </div>
-                    <div class="content-item-under-img">
+                    <a href="{% url 'catalog:detail' product.category.category.slug product.slug %}" class="content-item-under-img">
                         <span class="instock">
                             Есть в наличии
                         </span>
@@ -69,8 +69,8 @@
                             <span class="title-item">{{product.name}}</span>
                             <span class="text-item">{{product.size}} мм</span>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
                 {% endfor %}
             </div>
         </div>
