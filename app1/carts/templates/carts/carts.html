@@ -31,11 +31,11 @@
                                 <span class="accept-order">Стоимость</span>
                                 <input type="text" value="{{cart.products_price}}">
                             </div>
-                            <div class="date-group">
+                            <a href="{% url 'carts:cart_remove' cart_id=cart.id %}" class="date-group">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path d="M4.92896 4.92896L11.9985 12M11.9985 12L19.0711 4.92896M11.9985 12L19.0703 19.0719M11.9985 12L4.92896 19.0711" stroke="#1F2238" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                            </div>
+                            </a>
                         </div>
                         <div class="line-order"></div>
                     </div>
