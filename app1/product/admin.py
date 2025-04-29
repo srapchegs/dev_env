@@ -14,3 +14,7 @@ class SubcategoriesAdmin(admin.ModelAdmin):
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
+    list_display = ['name','quantity','price','category','size']
+    list_editable = ['quantity','price','category','size']
+    search_fields = ['name']
+    list_filter = ['quantity','price','category', ]

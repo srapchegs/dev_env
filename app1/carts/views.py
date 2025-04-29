@@ -4,39 +4,48 @@ from carts.models import Cart
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
+from orders.forms import CreateOrderForm
 from carts.utils import get_user_carts
+from django.views.decorators.http import require_POST
 from django.template.loader import render_to_string
+
 # Create your views here.
 
 
 def carts(request):
     if request.user.is_authenticated:
         carts = Cart.objects.filter(user=request.user)
+        form = None  # Если форма нужна только для неавторизованных
     else:
-        carts=""
+        carts = ""
+        form = CreateOrderForm()
     context = {
-    'title': "Корзина",
-    'carts': carts
+        'title': "Корзина",
+        'carts': carts,
+        'form': form,
+        'order': True,
     }
     return render(request, 'carts/carts.html', context)
 
-
 def cart_add(request):
-    product_id = request.POST.get("product_id")
-    product = Products.objects.get(id=product_id)
-    
-    if request.user.is_authenticated:
-        carts = Cart.objects.filter(user=request.user, product=product)
+    if request.method == "POST":
+        product_id = request.POST.get("product_id")
+        try:
+            product = Products.objects.get(id=product_id)
+        except Products.DoesNotExist:
+            return JsonResponse({'error': 'Product not found'}, status=404)
 
-        if carts.exists():
-            cart = carts.first()
-            if cart:
+        if request.user.is_authenticated:
+            carts = Cart.objects.filter(user=request.user, product=product)
+            if carts.exists():
+                cart = carts.first()
                 cart.quantity += 1
                 cart.save()
-        else:
-            Cart.objects.create(user=request.user, product=product, quantity=1)
+            else:
+                Cart.objects.create(user=request.user, product=product, quantity=1)
 
-    return HttpResponse(request)
+        return JsonResponse({'success': True})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 def cart_change(request):
     cart_id = request.POST.get("cart_id")

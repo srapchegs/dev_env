@@ -13,7 +13,7 @@ $(document).ready(function () {
         var product_id = $(this).data("product-id");
 
         // Из атрибута href берем ссылку на контроллер django
-        var add_to_cart_url = $(this).attr("href");
+        var add_to_cart_url = $(this).data("url");
 
         // делаем post запрос через ajax не перезагружая страницу
         $.ajax({

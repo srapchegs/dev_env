@@ -3,75 +3,71 @@
 <div class="content-purchase">
     <span class="title-orders">Корзина</span>
     {% if carts %}
-    <div class="table-orders">
-        <div class="orders-table">
-            {% for cart in carts %}
-            <div class="block-order">
-                <div class="group-order group-bucket">
-                    <div class="date-group">
-                        <img style="width: 60px; border-radius: 5px;" src="{{cart.product.image.url}}">
+    <form action="{% url 'orders:create_order' %}" method="post">
+        {% csrf_token %}
+        <div class="table-orders">
+            <div class="orders-table">
+                {% for cart in carts %}
+                <div class="block-order">
+                    <div class="group-order group-bucket">
+                        <div class="date-group">
+                            <img style="width: 60px; border-radius: 5px;" src="{{cart.product.image.url}}">
+                        </div>
+                        <div class="date-group">
+                            <span class="accept-order">Товар</span>
+                            <span class="date-order">{{cart.product.name}}</span>
+                        </div>
+                        <div class="date-group">
+                            <span class="accept-order">Цена</span>
+                            <span class="date-order">{{cart.product.price}} ₽</span>
+                        </div>
+                        <div class="date-group">
+                            <span class="accept-order">Количество</span>
+                            <input class="change-count" type="number" value="{{cart.quantity}}" data-cart-change-url="{% url 'carts:cart_change' %}" data-cart-id="{{cart.id}}">
+                        </div>
+                        <div class="date-group">
+                            <span class="accept-order">Стоимость</span>
+                            <input type="text" readonly value="{{cart.products_price}}">
+                        </div>
+                        <a href="{% url 'carts:cart_remove' %}" class="date-group remove-from-cart" data-cart-id="{{cart.id}}">
+                            {% csrf_token %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M4.92896 4.92896L11.9985 12M11.9985 12L19.0711 4.92896M11.9985 12L19.0703 19.0719M11.9985 12L4.92896 19.0711" stroke="#1F2238" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
                     </div>
-                    <div class="date-group">
-                        <span class="accept-order">Товар</span>
-                        <span class="date-order">{{cart.product.name}}</span>
-                    </div>
-                    <div class="date-group">
-                        <span class="accept-order">Цена</span>
-                        <span class="date-order">{{cart.product.price}} ₽</span>
-                    </div>
-                    <div class="date-group">
-                        <span class="accept-order">Количество</span>
-                        <input class="change-count" type="number" value="{{cart.quantity}}" data-cart-change-url="{% url 'carts:cart_change' %}" data-cart-id="{{cart.id}}">
-                    </div>
-                    <div class="date-group">
-                        <span class="accept-order">Стоимость</span>
-                        <input type="text" readonly value="{{cart.products_price}}">
-                    </div>
-                    <a href="{% url 'carts:cart_remove' %}" class="date-group remove-from-cart" data-cart-id="{{cart.id}}">
-                        {% csrf_token %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M4.92896 4.92896L11.9985 12M11.9985 12L19.0711 4.92896M11.9985 12L19.0703 19.0719M11.9985 12L4.92896 19.0711" stroke="#1F2238" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
+                    <div class="line-order"></div>
                 </div>
-                <div class="line-order"></div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
-    </div>
-    <div class="description-purchase">
-        <div>
-            <span class="sum-purchase">Общая стоимость: {{carts.total_price}} ₽</span>
+
+        <div class="description-purchase">
+            <div>
+                <span class="sum-purchase">Общая стоимость: {{carts.total_price}} ₽</span>
+            </div>
+            <div>
+                <span class="sum-purchase">Способ получения:</span>
+                <select class="select-items" name="requires_delivery" required>
+                    <option value="1">Доставка</option>
+                    <option value="0">Самовывоз</option>
+                </select>
+            </div>
+            <div>
+                <span class="sum-purchase">Адрес:</span>
+                <textarea class="form-control" id="id_delivery_address" name="delivery_address" rows="2"></textarea>
+            </div>  
+            <div>
+                <span class="sum-purchase">Способ оплаты: безналичный по счёту.</span>
+            </div>
         </div>
-        <div>
-            <span class="sum-purchase">Общее количество товаров: {{carts.total_quantity}} шт.</span>
-        </div>
-        <div>
-            <span class="sum-purchase">Способ доставки:</span>
-            <select class="select-items">
-                <option>Доставка</option>
-                <option>Самовывоз</option>
-            </select>
-        </div>  
-        <div>
-            <span class="sum-purchase">Способ оплаты:</span>
-            <select class="select-items">
-                <option>QR-code</option>
-                <option>СБП</option>
-                <option>Наличными</option>
-            </select>
-        </div>
-        <div>
-            <span class="sum-purchase">Контактные данные берутся из личного кабинета</span>
-        </div>
-    </div>
+
+        <button class="button-order" type="submit">Оформить заказ</button>
+    </form>
     {% else %}
     <div class="table-orders" style="margin: auto; padding: 150px 0">
-        <span class="sum-purchase" style="text-aling: center">Добавьте товары в корзину</span>
+        <span class="sum-purchase" style="text-align: center">Добавьте товары в корзину</span>
         <a href="{% url 'catalog:catalog' category_slug='blocks' %}" class="button-order" style="margin: auto;">Перейти в каталог</a>
     </div>
     {% endif %}
 </div>
-{% if carts %}
-<button class="button-order">Оформить заказ</button>
-{% endif %}
