@@ -1,4 +1,6 @@
 from django.db import models
+from users.models import User
+
 
 # Create your models here.
 
@@ -17,3 +19,18 @@ class Cars(models.Model):
         db_table = 'cars'
         verbose_name = "Спец. технику"
         verbose_name_plural = "Спец. техники"
+    
+class CarsBid(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.SET_DEFAULT, verbose_name="Пользователь", default=None)
+    created_timestamp = models.DateTimeField(auto_now_add=True, verbose_name="Дата отправки заявки")
+    cars = models.ForeignKey(to=Cars, on_delete=models.SET_DEFAULT, verbose_name="Машина", default=None)
+    bid_address = models.TextField(verbose_name="Адрес заявки")
+    date_rent = models.TextField(verbose_name="Даты и сроки аренды")
+
+    class Meta:
+        db_table = "car_bid"
+        verbose_name = "Заявку"
+        verbose_name_plural = "Заявки"
+
+    def __str__(self):
+        return f"Заявка на {self.cars.name} | Заявитель {self.user.first_name} {self.user.last_name}"

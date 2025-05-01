@@ -1,28 +1,13 @@
-{% comment %} {%  extends "main/base.html" %}
+{%  extends "main/base.html" %}
 {% load static %}
-{% block style %} {% endcomment %}
+{% block style %}
 <style>
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5f7fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-
   .container {
-    background: #fff;
+    margin: auto;
+    margin-top:100px;
+    margin-bottom:100px;
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    width: 100%;
   }
 
   h2 {
@@ -80,8 +65,8 @@
     color: #0056b3;
   }
 </style>
-{% comment %} {% endblock style%}
-{% block content %} {% endcomment %}
+{% endblock style%}
+{% block content %}
   <div class="container">
     <h2 id="form-title">Авторизация</h2>
     <form id="login-form" class="active" action="{% url 'user:login' %}" method="post" >
@@ -152,4 +137,4 @@
       }
     });
   </script>  
-  {% comment %} {% endblock content %} {% endcomment %}
+{% endblock content %} 

@@ -1,12 +1,31 @@
 .group-bucket{
-    display: flex;
+    display: flex !important;
     width: 100%;
-    flex-direction: row;
+    flex-direction: row !important;
     flex-wrap: wrap;
     align-items: center;
+    font-size: 13pt;
+    justify-content: space-between !important;
+}
+.accept-order2{
+    font-size: 12pt !important;
+}
+.form-control{
+    font-family: "NunitoSans";
+    font-size: 12pt;
+    width: 250px;
+}
+.date-order2{
+    font-size: 13pt !important;
+}
+.withot{
+    border: 0px;
+    background-color: unset;
 }
 .date-group input{
-    width: 50px;
+    width: 90px;
+    height: 20px;
+    font-size: 13pt;
 }
 .sum-purchase{
     color: var(--black, #1F2238);

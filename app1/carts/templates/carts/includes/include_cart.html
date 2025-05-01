@@ -3,7 +3,7 @@
 <div class="content-purchase">
     <span class="title-orders">Корзина</span>
     {% if carts %}
-    <form action="{% url 'orders:create_order' %}" method="post">
+    <form action="{% url 'orders:create_order' %}" method="post" class="table-orders">
         {% csrf_token %}
         <div class="table-orders">
             <div class="orders-table">
@@ -14,20 +14,20 @@
                             <img style="width: 60px; border-radius: 5px;" src="{{cart.product.image.url}}">
                         </div>
                         <div class="date-group">
-                            <span class="accept-order">Товар</span>
-                            <span class="date-order">{{cart.product.name}}</span>
+                            <span class="accept-order accept-order2">Товар</span>
+                            <span class="date-order date-order2">{{cart.product.name}}</span>
                         </div>
                         <div class="date-group">
-                            <span class="accept-order">Цена</span>
-                            <span class="date-order">{{cart.product.price}} ₽</span>
+                            <span class="accept-order accept-order2">Цена</span>
+                            <span class="date-order date-order2">{{cart.product.price}} ₽</span>
                         </div>
                         <div class="date-group">
-                            <span class="accept-order">Количество</span>
-                            <input class="change-count" type="number" value="{{cart.quantity}}" data-cart-change-url="{% url 'carts:cart_change' %}" data-cart-id="{{cart.id}}">
+                            <span class="accept-order accept-order2">Количество</span>
+                            <input class="change-count" type="number" value="{{cart.quantity}}" min=1 data-cart-change-url="{% url 'carts:cart_change' %}" data-cart-id="{{cart.id}}">
                         </div>
                         <div class="date-group">
-                            <span class="accept-order">Стоимость</span>
-                            <input type="text" readonly value="{{cart.products_price}}">
+                            <span class="accept-order accept-order2">Стоимость</span>
+                            <input type="text" class="withot" readonly value="{{cart.products_price}}">
                         </div>
                         <a href="{% url 'carts:cart_remove' %}" class="date-group remove-from-cart" data-cart-id="{{cart.id}}">
                             {% csrf_token %}
@@ -49,19 +49,18 @@
             <div>
                 <span class="sum-purchase">Способ получения:</span>
                 <select class="select-items" name="requires_delivery" required>
-                    <option value="1">Доставка</option>
                     <option value="0">Самовывоз</option>
+                    <option value="1">Доставка</option>
                 </select>
             </div>
             <div>
                 <span class="sum-purchase">Адрес:</span>
-                <textarea class="form-control" id="id_delivery_address" name="delivery_address" rows="2"></textarea>
+                <textarea class="form-control" id="id_delivery_address" name="delivery_address" rows="1" required></textarea>
             </div>  
             <div>
                 <span class="sum-purchase">Способ оплаты: безналичный по счёту.</span>
             </div>
         </div>
-
         <button class="button-order" type="submit">Оформить заказ</button>
     </form>
     {% else %}
@@ -71,3 +70,24 @@
     </div>
     {% endif %}
 </div>
+{% if messages %}
+    <script type="text/javascript">
+        {% for message in messages %}
+            alert("{{ message }}");
+        {% endfor %}
+    </script>
+{% endif %}
+<script>
+    const deliverySelect = document.querySelector('select[name="requires_delivery"]');
+    const addressField = document.querySelector('#id_delivery_address');
+    addressField.value = "г. Тюмень, ул. Новаторов 7к1";
+    deliverySelect.addEventListener("change", function () {
+        if (this.value === "0") {
+            addressField.value = "г. Тюмень, ул. Новаторов 7к1";
+            addressField.readOnly = true; // чтобы пользователь не мог редактировать
+        } else {
+            addressField.value = "";
+            addressField.readOnly = false;
+        }
+    });
+</script>

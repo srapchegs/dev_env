@@ -1,6 +1,9 @@
 {%  extends "main/base.html" %}
 
 {% load static %}
+{% block css%}
+<link href="{% static 'deps/css/style_cars.css' %}" rel="stylesheet">
+{% endblock css%}
 
 {% block content%}
 <section class="brand-routes">
@@ -39,11 +42,16 @@
                                         </div>
                                         <div class="activity-tour__order-buttons">
                                             <div class="activity-tour__order-button">
-                                                <button class="openModal activity-tour__order-button--master">
-                                                    Отправить заявку
-                                                </button>
+                                                {% if user.is_authenticated %}
+                                                    <button class="openModal activity-tour__order-button--master" data-car-id="{{ car.id }}">
+                                                        Отправить заявку
+                                                    </button>
+                                                {% else %}
+                                                    <button class="openLogin activity-tour__order-button--master" data-car-id="{{ car.id }}">
+                                                        Отправить заявку
+                                                    </button>
+                                                {% endif %}
                                             </div>
-                
                                         </div>
                                     </div>
                                 </div>
@@ -78,15 +86,17 @@
                     Оставьте заявку на аренду
                 </span>
             </div>
-            <form class="review-form">
+            <form action="{% url 'cars:create_cars' %}" method="post" class="review-form">
+                {% csrf_token %}
                 <div class="inputs-container">
-                    <textarea class="textarea-rev" placeholder="Дата и сроки аренды"></textarea>
-                    <textarea class="textarea-rev"  placeholder="Адрес"></textarea>
+                    <input type="hidden" id="id_car_id" name="car_id">
+                    <textarea class="textarea-rev" id="id_bid_address" name="bid_address" placeholder="Адрес" required></textarea>
+                    <textarea class="textarea-rev" id="id_date_rent" name="date_rent"  placeholder="Дата и сроки аренды" required></textarea>
                 </div>
                 <div class="container-forms-btns">
-                    <div class="buttons-container-rev">
+                    <button type="submit" class="buttons-container-rev">
                         Оставить заявку
-                    </div>
+                    </button>
                     <span class="confidens">
                         Нажимая на кнопку, подтверждаю свое согласие с положениями политики конфиденциальности 
                     </span>
@@ -98,8 +108,13 @@
 <script>
     $(document).ready(function() {
         $('.openModal').on('click', function () {
+            var carId = $(this).data('car-id'); // Получаем ID автомобиля из атрибута data
+            $('#id_car_id').val(carId); // Заполняем скрытое поле ID автомобиля
             $('.overlay').fadeIn();
             $('.modal').fadeIn();
+        });
+        $('.openLogin').on('click', function () {
+            window.location.href = "{% url 'users:login' %}";
         });
         $('.closeModal, #overlay').on('click', function () {
             $('.overlay').fadeOut();

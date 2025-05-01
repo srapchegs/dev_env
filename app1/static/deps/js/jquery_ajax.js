@@ -1,6 +1,51 @@
 // Когда html документ готов (прорисован)
 $(document).ready(function () {
-    // Ловим собыитие клика по кнопке добавить в корзину
+    function sendMessage() {
+        const input = document.getElementById('user-input');
+        const message = input.value.trim();
+        if (message === '') return;
+  
+        const chatMessages = document.getElementById('chat-messages');
+  
+        // Отображаем сообщение пользователя
+        const userMsg = document.createElement('div');
+        userMsg.className = 'message user-message';
+        userMsg.textContent = message;
+        chatMessages.appendChild(userMsg);
+  
+        input.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+  
+        // Отправляем сообщение на сервер
+        $.ajax({
+          url: '/chat/answer/',
+          method: 'POST',
+          data: {
+            message: message,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+          },
+          success: function(data) {
+            // Преобразуем текст, заменяя URL на кликабельную ссылку
+            let response = data.response.replace(
+              /(https?:\/\/[^\s]+)/g,
+              '<a href="$1" target="_blank">$1</a>'
+            );
+            const botMsg = document.createElement('div');
+            botMsg.className = 'message bot-message';
+            botMsg.innerHTML = response;
+            chatMessages.appendChild(botMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+          },
+          error: function(xhr) {
+            const errorMsg = document.createElement('div');
+            errorMsg.className = 'message bot-message';
+            errorMsg.textContent = 'Ошибка: ' + xhr.statusText;
+            chatMessages.appendChild(errorMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+          }
+        });
+      }
+      
     $(document).on("click", ".add-to-cart", function (e) {
         // Блокируем его базовое действие
         e.preventDefault();
@@ -13,7 +58,13 @@ $(document).ready(function () {
         var product_id = $(this).data("product-id");
 
         // Из атрибута href берем ссылку на контроллер django
-        var add_to_cart_url = $(this).data("url");
+        var add_to_cart_url = $(this).attr("href");
+
+        var svgNoAdded = $(this).find(".no_added");
+        var svgAdded = $(this).find(".added");
+
+        var btnNoAdded = $(document).find(".buttons-container-detail2");
+        var btnAdded = $(document).find(".buttons-container-detail1");
 
         // делаем post запрос через ajax не перезагружая страницу
         $.ajax({
@@ -26,9 +77,12 @@ $(document).ready(function () {
             success: function (data) {
                 // Увеличиваем количество товаров в корзине (отрисовка в шаблоне)
                 cartCount++;
-                goodsInCartCount.text(cartCount);
+                goodsInCartCount.text(cartCount);  
+                svgNoAdded.removeClass("activeds");
+                svgAdded.addClass("activeds"); 
+                btnNoAdded.removeClass("activedz");
+                btnAdded.addClass("activedz");  
             },
-
             error: function (data) {
                 console.log("Ошибка при добавлении товара в корзину");
             },

@@ -16,6 +16,8 @@ h2{
 }
 body{
     margin: 0;
+    display: block;
+    flex-direction: unset;
 }
 .main-places .main-places__sub-title {
     margin-bottom: 8px;
@@ -704,6 +706,7 @@ body{
     width: 100%;
     flex-direction: column;
     justify-content: center;
+    padding-bottom: 100px;
     align-items: center;
 }
 .brand-routes__tour-container {
@@ -1022,10 +1025,7 @@ body{
 .activity-tour__dates-text{
     align-self: stretch;
     color: #FFF;
-    font-feature-settings: 'liga' off, 'clig' off;
-
-    /* tab mob b/body-s 16-22-400 */
-    
+    font-feature-settings: 'liga' off, 'clig' off;    
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -1332,7 +1332,7 @@ body{
         bottom: -66px;
     }
     .brand-routes{
-
+        padding-bottom: 100px;
     }
     .activity-tour__order-buttons {
         align-self: stretch;
@@ -1641,6 +1641,7 @@ body{
 @media(min-width: 1400px) {
     .brand-routes{
         padding: 26px 0px;
+        padding-bottom: 100px;
     }
     .brand-routes__title{
         color: var(--black, #1F2238);

@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-
+{%  extends "main/base.html" %}
+{% load static %}
+{% block style %}
 
   <style>
-    * {
+    {% comment %} * {
       box-sizing: border-box;
     }
 
@@ -14,15 +15,12 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-    }
+    } {% endcomment %}
 
     .container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       max-width: 400px;
-      width: 100%;
+      margin: auto;
+      padding: 30px;
     }
 
     h2 {
@@ -89,7 +87,8 @@
       border: 1px solid red;
     }
   </style>
-
+  {% endblock style%}
+  {% block content %}
   <div class="container">
     <h2 id="form-title">Регистрация</h2>
     <form id="register-form" action="{% url "user:registration" %}" method="post">
@@ -199,3 +198,4 @@
       }
     });
   </script>  
+  {% endblock content %} 

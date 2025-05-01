@@ -18,6 +18,20 @@
     line-height: 36px; /* 120% */
     margin: auto;
 }
+.activeds{
+    display: flex !important;
+    
+}
+.no_added {
+    display: none;
+}
+.added{
+    display: none;
+}
+.activeds{
+    display: flex !important;
+    
+}
 body{
     background: var(--secondary-25, #FBFAF9);
 }

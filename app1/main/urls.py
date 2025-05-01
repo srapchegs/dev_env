@@ -21,8 +21,8 @@ app_name="main"
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('purchase/', views.purchase, name="purchase"),
     path('bucket/', views.bucket, name="bucket"),
     path('contacts/', views.contacts, name="contacts"),
-    path('favorite/', views.favorite, name="favorite"),
+    path('chat/', views.chat, name="chat"),
+    path('chat/answer/', views.chat_answer, name='chat_answer'),
 ]

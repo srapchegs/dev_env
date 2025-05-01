@@ -47,7 +47,7 @@ def profile(request):
     context = {
         'title': "Личный кабинет"
     }   
-    return render(request,'users/purchase.html', context)
+    return render(request,'orders/orders.html', context)
 
 def logout(request):
     auth.logout(request)

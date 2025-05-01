@@ -4,5 +4,6 @@ from orders import views
 app_name="orders"
 
 urlpatterns = [
+    path('', views.orders, name="orders"),  # Ensure correct namespace here
     path('create-order/', views.create_order, name="create_order"),
 ]

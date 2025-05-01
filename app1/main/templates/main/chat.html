@@ -1,0 +1,186 @@
+{%  extends "main/base.html" %}
+
+{% load static %}
+{% block style %}
+<style>
+    .chat-container {
+    margin:auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+      width: 70%;
+      height: 600px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background-color: #316650;
+      color: white;
+      padding: 16px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .chat-messages {
+      flex-grow: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .user-message {
+      background-color: #9CCA9C;
+      align-self: flex-end;
+    }
+
+    .bot-message {
+      background-color: #eeeeee;
+      align-self: flex-start;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-input input {
+      flex-grow: 1;
+      padding: 12px;
+      border: none;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .chat-input button {
+      padding: 12px 16px;
+      background-color: #316650;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .chat-input button:hover {
+      background-color: #295741;
+    }
+  </style>
+
+{% endblock style %}
+
+{% block content%}
+  <div class="chat-container">
+    <div class="chat-header">Задай мне вопрос!</div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="bot-message message">Привет! Чем могу помочь?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Напишите сообщение..." />
+      <button onclick="sendMessage()">Отправить</button>
+    </div>
+  </div>
+
+  <script>
+    let typingInterval;
+    let typingElement;
+
+    function showTypingAnimation() {
+      typingElement = document.createElement('div');
+      typingElement.className = 'message bot-message';
+      typingElement.id = 'typing-indicator';
+      typingElement.textContent = 'Готовлю ответ';
+      document.getElementById('chat-messages').appendChild(typingElement);
+
+      let dotCount = 0;
+      typingInterval = setInterval(() => {
+        dotCount = (dotCount + 1) % 4;
+        typingElement.textContent = 'Готовлю ответ' + '.'.repeat(dotCount);
+        document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
+      }, 500);
+    }
+    function rateMessage(messageId, rating) {
+      const container = document.getElementById(messageId);
+      if (container) {
+          const buttons = container.querySelectorAll('button');
+          buttons.forEach(btn => btn.disabled = true);  // Отключаем кнопки после оценки
+      }
+  
+      // Просто выводим информацию в консоль для проверки
+      console.log(`Оценка для сообщения с ID ${messageId}: ${rating}`);
+    }
+    function hideTypingAnimation() {
+      clearInterval(typingInterval);
+      const el = document.getElementById('typing-indicator');
+      if (el) el.remove();
+    }
+    document.getElementById('user-input').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault(); // предотвращает перенос строки
+        sendMessage();
+      }
+    });
+    function sendMessage() {
+      const input = document.getElementById('user-input');
+      const message = input.value.trim();
+      if (message === '') return;
+
+      const chatMessages = document.getElementById('chat-messages');
+
+      const userMsg = document.createElement('div');
+      userMsg.className = 'message user-message';
+      userMsg.textContent = message;
+      chatMessages.appendChild(userMsg);
+
+      input.value = '';
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Показываем "бот печатает..."
+      showTypingAnimation();
+
+      // Отправляем сообщение на сервер
+      $.ajax({
+        url: '/chat/answer/',
+        method: 'POST',
+        data: {
+          message: message,
+          csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function(data) {
+            hideTypingAnimation();
+            // Преобразуем текст, заменяя URL на кликабельную ссылку
+            let response = data.response.replace(
+              /(https?:\/\/[^\s]+)/g,
+              '<a href="$1" target="_blank">$1</a>'
+            );
+            const botMsg = document.createElement('div');
+            botMsg.className = 'message bot-message';
+            botMsg.innerHTML = response;
+            chatMessages.appendChild(botMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        },
+        error: function(xhr) {
+          hideTypingAnimation();
+          const errorMsg = document.createElement('div');
+          errorMsg.className = 'message bot-message';
+          errorMsg.textContent = 'Ошибка: ' + xhr.statusText;
+          chatMessages.appendChild(errorMsg);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+      });
+    }
+  </script>
+  {% endblock content%}

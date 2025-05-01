@@ -11,7 +11,6 @@
     <link href="{% static 'deps/css/footer.css' %}" rel="stylesheet">
     <link href="{% static 'deps/css/style_reviews.css' %}" rel="stylesheet">
     <link href="{% static 'deps/css/style_contact.css' %}" rel="stylesheet">
-    <link href="{% static 'deps/css/style_cars.css' %}" rel="stylesheet">
     <link href="{% static 'deps/css/style_reviews.css' %}" rel="stylesheet">
     <link href="{% static 'deps/css/style_purchase.css' %}" rel="stylesheet">
     <link href="{% static 'deps/css/style_bucket.css' %}" rel="stylesheet">
@@ -56,6 +55,9 @@
                         </div>
                     {% endfor %}
                     <div class="item">
+                        <a href="{% url "main:chat" %}" target="_blank" class="item-text">Чат с ИИ</a>
+                    </div>
+                    <div class="item">
                         <a href="{% url "cars:cars" %}" class="item-text">Спец. техника</a>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M10.5745 12.7764C10.2553 13.0745 9.74473 13.0745 9.42547 12.7764L5.7484 9.34304C5.22255 8.85204 5.58703 8 6.32293 8L13.6771 8C14.413 8 14.7775 8.85204 14.2516 9.34304L10.5745 12.7764Z" fill="#9CCA9C"/>
@@ -83,11 +85,8 @@
                             <path d="M3.33301 15H16.6663M3.33301 10H16.6663M3.33301 5H16.6663" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                    <a href="{% if user.first_name %} {% url "main:purchase" %}{% else %} {% url "users:login" %} {% endif %}" type="button" class="button-menu hide1">
+                    <a href="{% if user.first_name %} {% url "orders:orders" %}{% else %} {% url "users:login" %} {% endif %}" type="button" class="button-menu hide1">
                         <img class="bucket" src="{% static 'deps/images/lk2.png' %}">
-                    </a>
-                    <a href="{% url "main:favorite" %}" type="button" class="button-menu hide2">
-                        <img class="bucket" src="{% static 'deps/images/fav.png' %}">
                     </a>
                     <a href="{% url 'carts:carts' %}" type="button" class="button-menu" style="position: relative;">
                         <img class="bucket" src="{% static 'deps/images/корзина.png' %}">
@@ -110,15 +109,16 @@
             <div class="right-menu">
                 <img class="lk" src="{% static 'deps/images/lk.png' %}"></br>
                 {% if user.first_name %}                
-                    <a href="{% url "main:purchase" %}" class="lk-text">{{ user.first_name }} {{ user.last_name  }}</a>
+                    <a href="{% url "orders:orders" %}" class="lk-text">{{ user.first_name }} {{ user.last_name  }}</a>
                 {% else %}
                     <a href="{% url "users:login" %}" class="lk-text">Личный кабинет</a>
                 {% endif %} 
                 <div class="line-lk">
                 </div>
                 <div class="right-menu-items">
+                    <a href="{% url "main:chat" %}" target="_blank">Чат с ИИ</a>
                     <a href="{% url 'catalog:catalog' category_slug='blocks' %}">Блоки</a>
-                    <a href="{% url 'catalog:catalog' category_slug='bruschatka' %}">Плитки</a>
+                    <a href="{% url 'catalog:catalog' category_slug='bruschatka' %}">Брусчатка</a>
                     <a href="{% url 'catalog:catalog' category_slug='bordyury' %}">Бордюры</a>
                     <a href="{% url "cars:cars" %}">Спец. техника</a>
                     <a href="{% url "main:contacts" %}">Контакты</a>
@@ -141,9 +141,9 @@
                         </svg>
                     </div>
                     <div class="items-inner-group">
-                        <span class="title-inner">Блоки</span>
-                        <span class="title-inner">Плитки</span>
-                        <span class="title-inner">Бордюры</span>
+                        <a href="{% url 'catalog:catalog' category_slug='blocks' %}" class="title-inner">Блоки</a>
+                        <a href="{% url 'catalog:catalog' category_slug='bruschatka' %}" class="title-inner">Брусчатка</a>
+                        <a href="{% url 'catalog:catalog' category_slug='bordyury' %}" class="title-inner">Бордюры</a>
                     </div>
                 </div>
                 <div class="first-item-group">
@@ -154,9 +154,10 @@
                         </svg>
                     </div>
                     <div class="items-inner-group">
-                        <span class="title-inner">Манипулятор</span>
-                        <span class="title-inner">Камаз</span>
-                        <span class="title-inner">Вышка</span>
+
+                        <a href="{% url "cars:cars" %}" class="title-inner">Камаз</a>
+                        <a href="{% url "cars:cars" %}" class="title-inner">Манипулятор</a>
+                        <a href="{% url "cars:cars" %}" class="title-inner">Вышка</a>
                     </div>
                 </div>
                 <div class="first-item-group">
@@ -167,8 +168,8 @@
                         </svg>
                     </div>
                     <div class="items-inner-group">
-                        <span class="title-inner">Контакты</span>
-                        <span class="title-inner">Отзывы</span>
+                        <a href="{% url "main:contacts" %}" class="title-inner">Контакты</a>
+                        <a href="{% url "reviews:reviews" %}" class="title-inner">Отзывы</a>
                     </div>
                 </div>            
             </div>

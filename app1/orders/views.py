@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 from carts.models import Cart
 from orders.forms import CreateOrderForm
 from orders.models import Order, OrderItem
+from django.shortcuts import render
 
 # Create your views here.
 def create_order(request):
@@ -38,3 +39,49 @@ def create_order(request):
         except ValidationError as e:
             messages.error(request, str(e))
             return redirect('orders:create_order')
+        
+def orders(request):
+    if request.user.is_authenticated:
+        # Получаем параметр сортировки из GET-запроса (если есть)
+        selected_status = request.GET.get('status', None)
+
+        # Если выбран статус, фильтруем заказы по этому статусу, иначе все заказы
+        if selected_status:
+            orders = Order.objects.filter(user=request.user, status=selected_status).order_by('-created_timestamp')
+        else:
+            orders = Order.objects.filter(user=request.user).order_by('-created_timestamp')  # сортировка по дате создания
+
+        # Получаем все уникальные статусы заказов
+        statuses = Order.objects.values_list('status', flat=True).distinct()
+
+        order_data = []
+
+        for order in orders:
+            order_items = OrderItem.objects.filter(order=order)
+            products = [{
+                'name': item.name,
+                'quantity': item.quantity,
+                'price': item.price,
+            } for item in order_items]
+            total_price = sum(item.price * item.quantity for item in order_items)
+
+            order_data.append({
+                'order_id': order.id,
+                'products': products,
+                'total_price': total_price,
+                'delivery_method': 'Доставка' if order.requires_delivery else 'Самовывоз',
+                'status': order.status,
+                'is_paid': order.is_paid,
+                'created_timestamp': order.created_timestamp,
+            })
+
+        context = {
+            'title': "Личный кабинет",
+            'orders': order_data,
+            'statuses': statuses,  # Добавляем статусы в контекст
+            'selected_status': selected_status,  # Сохраняем выбранный статус для отображения
+        }
+
+    return render(request, 'orders/orders.html', context)
+
+

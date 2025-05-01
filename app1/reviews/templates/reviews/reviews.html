@@ -10,9 +10,15 @@
             <span class="title-review">
                 Отзывы
             </span>
-            <button type="button" class="send-review openModal">
-                Оставить отзыв
-            </button>
+            {% if user.is_authenticated %}
+                <button type="button" class="send-review openModal">
+                    Оставить отзыв
+                </button>
+            {% else %}
+                <button type="button" class="send-review openLogin">
+                    Оставить отзыв
+                </button>
+            {% endif %}
         </div>
         <div class="under-header-reviews reviews-slider">
             {% for review in reviews %}
@@ -83,16 +89,17 @@
                 Поделитесь своим мнением — нам важно знать, что вы думаете!
             </span>
         </div>
-        <form class="review-form">
+        <form action="{% url 'reviews:create_reviews' %}" method="post" class="review-form">
+            {% csrf_token %}
             <div class="inputs-container">
-                <textarea class="textarea-rev" placeholder="Что понравилось"></textarea>
-                <textarea class="textarea-rev"  placeholder="Что можно улучшить"></textarea>
-                <textarea class="textarea-rev"  placeholder="Общий отзыв о ваших впечатлениях"></textarea>
+                <textarea class="textarea-rev" id="id_what_likes" name="what_likes" required placeholder="Что понравилось"></textarea>
+                <textarea class="textarea-rev" id="id_what_modern" name="what_modern" required placeholder="Что можно улучшить"></textarea>
+                <textarea class="textarea-rev" id="id_review" name="review" required placeholder="Общий отзыв о ваших впечатлениях"></textarea>
             </div>
             <div class="container-forms-btns">
-                <div class="buttons-container-rev">
+                <button type="submit" class="buttons-container-rev">
                     Оставить заявку
-                </div>
+                </button>
                 <span class="confidens">
                     Нажимая на кнопку, подтверждаю свое согласие с положениями политики конфиденциальности 
                 </span>
@@ -100,4 +107,9 @@
         </form>
     </div>
 </div>
+<script>
+    $('.openLogin').on('click', function () {
+        window.location.href = "{% url 'users:login' %}";
+    });
+</script>
 {% endblock content%}
