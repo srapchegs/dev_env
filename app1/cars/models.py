@@ -8,7 +8,6 @@ class Cars(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name="Название")
     slug = models.SlugField(max_length=200, unique=True, verbose_name="URL")
     description = models.TextField(verbose_name="Описание")
-    descriptio = models.TextField(verbose_name="Описание", default="")
     image = models.ImageField(upload_to='car_image', verbose_name="Изображение")
     price=models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name="Цена")
     
