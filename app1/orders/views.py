@@ -6,6 +6,7 @@ from carts.models import Cart
 from orders.forms import CreateOrderForm
 from orders.models import Order, OrderItem
 from django.shortcuts import render
+from django.core.mail import send_mail
 
 # Create your views here.
 def create_order(request):
@@ -21,6 +22,7 @@ def create_order(request):
                         delivery_address=form.cleaned_data['delivery_address'],
                         requires_delivery=form.cleaned_data['requires_delivery'],
                     )
+                    item_lines = []
                     for cart_item in cart_items:
                         product=cart_item.product
                         name=cart_item.product.name
@@ -33,9 +35,24 @@ def create_order(request):
                             price=price,
                             quantity=quantity,
                         )
+                        item_lines.append(f"{name} — {quantity} шт. по {price} руб.")
+
                     cart_items.delete()
+                    email_subject = "Новый заказ!"
+                    email_body = (
+                        f"Клиент: {user.first_name} {user.last_name} ({user.email}, {user.phone})\n"
+                        "Товары:\n" +
+                        "\n".join(item_lines)
+                    )
                     messages.success(request, 'Заказ оформлен!')
-                    return redirect('main:index')
+                    send_mail(
+                        email_subject,
+                        email_body,
+                        "srapik614@gmail.com",
+                        ["srapik614@gmail.com"],
+                        fail_silently=False,
+                    )
+                    return redirect('orders:orders')
         except ValidationError as e:
             messages.error(request, str(e))
             return redirect('orders:create_order')

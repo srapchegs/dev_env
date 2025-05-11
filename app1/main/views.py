@@ -45,7 +45,6 @@ def chat_answer(request):
         try:
             # Собираем последние сообщения как контекст
             context = "\n".join([f"{m['role']}: {m['content']}" for m in chat_history[-6:]])  # последние 3 пары
-
             # Формируем итоговый запрос к модели
             qa_chain = RetrievalQA.from_chain_type(llm, retriever=db.as_retriever())
             result = qa_chain({"query": context})

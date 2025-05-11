@@ -117,6 +117,18 @@ $(document).ready(function () {
                 // Меняем содержимое корзины на ответ от django (новый отрисованный фрагмент разметки корзины)
                 var cartItemsContainer = $("#cart-items-container");
                 cartItemsContainer.html(data.cart_items_html);
+                const deliverySelect = document.querySelector('select[name="requires_delivery"]');
+                const addressField = document.querySelector('#id_delivery_address');
+                addressField.value = "г. Тюмень, ул. Новаторов 7к1";
+                deliverySelect.addEventListener("change", function () {
+                    if (this.value === "0") {
+                        addressField.value = "г. Тюмень, ул. Новаторов 7к1";
+                        addressField.readOnly = true; // чтобы пользователь не мог редактировать
+                    } else {
+                        addressField.value = "";
+                        addressField.readOnly = false;
+                    }
+                });
             },
 
             error: function (data) {
@@ -143,6 +155,18 @@ $(document).ready(function () {
                 // Меняем содержимое корзины
                 var cartItemsContainer = $("#cart-items-container");
                 cartItemsContainer.html(data.cart_items_html);
+                const deliverySelect = document.querySelector('select[name="requires_delivery"]');
+                const addressField = document.querySelector('#id_delivery_address');
+                addressField.value = "г. Тюмень, ул. Новаторов 7к1";
+                deliverySelect.addEventListener("change", function () {
+                    if (this.value === "0") {
+                        addressField.value = "г. Тюмень, ул. Новаторов 7к1";
+                        addressField.readOnly = true; // чтобы пользователь не мог редактировать
+                    } else {
+                        addressField.value = "";
+                        addressField.readOnly = false;
+                    }
+                });
             },
             error: function (data) {
                 console.log("Ошибка при добавлении товара в корзину");

@@ -9,7 +9,7 @@ class Cars(models.Model):
     slug = models.SlugField(max_length=200, unique=True, verbose_name="URL")
     description = models.TextField(verbose_name="Описание")
     image = models.ImageField(upload_to='car_image', verbose_name="Изображение")
-    price=models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name="Цена")
+    price=models.DecimalField(max_digits=7, decimal_places=2, verbose_name="Цена", null=True, blank=True)
     
     def __str__(self):
                 return self.name    

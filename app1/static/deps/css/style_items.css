@@ -127,7 +127,7 @@ body{
     align-items: center;
     gap: var(--8, 8px);
     position: absolute;
-    left: 16px;
+    right: 16px;
     bottom: 15.999px;
     border-radius: var(--xs, 8px);
     background: var(--black, #253A31);

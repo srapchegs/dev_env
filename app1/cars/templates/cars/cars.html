@@ -31,13 +31,19 @@
                                             <span class="activity-tour__list-title">{{car.name}}</span>
                                         </div>
                                         <div class="activity-tour__text">
-                                            <span class="activity-tour__description-text">{{ car.description }}
+                                            <span class="activity-tour__description-text">{{ car.description|linebreaksbr }}
                                             </span>
                                         </div>
                                     </div>
                                     <div class="activity-tour__buttons">
                                         <div class="activity-tour__price-line">
-                                                <span class="activity-tour__price">{{ car.price }} ₽</span>
+                                            <span class="activity-tour__price">
+                                                {% if car.price %}
+                                                  от {{ car.price }} ₽
+                                                {% else %}
+                                                  По заявке
+                                                {% endif %}
+                                              </span>
                                             <span class="activity-tour__price-description">цена за час</span>
                                         </div>
                                         <div class="activity-tour__order-buttons">

@@ -12,7 +12,7 @@
                     <div class="breadcrumbs-detail-container">
                         <a href={% url "main:index" %} class="black-breadcrumbs-detail">Главная</a>
                         <span class="black-breadcrumbs-detail"> / </span>
-                        <a href={% url "catalog:catalog" product.category.category.slug %} class="black-breadcrumbs-detail">Блоки</a>
+                        <a href={% url "catalog:catalog" product.category.category.slug %} class="black-breadcrumbs-detail">{{product.category.category.name}}</a>
                         <span class="black-breadcrumbs-detail"> / </span>
                         <span class="grey-breadcrumbs-detail">{{product.name}}</span>
                     </div>
@@ -28,16 +28,8 @@
                                 <span>{{product.size}}</span>
                             </div>
                             <div class="line-info-detail">
-                                <b>Вес</b>
-                                <span>Размеры</span>
-                            </div>
-                            <div class="line-info-detail">
                                 <b>Состав</b>
                                 <span>{{product.compound}}</span>
-                            </div>
-                            <div class="line-info-detail">
-                                <b>Кол-во на поддоне (шт.)</b>
-                                <span>Размеры</span>
                             </div>
                             <div class="line-info-detail">
                                 <b>Наличие</b>
@@ -67,10 +59,10 @@
                     </div>
                     <div class="description-detail">
                         <span class="title-description">
-                            Описание
+                            Подробное описание
                         </span>
                         <span class="text-description">
-                            {{product.description}}
+                            {{product.description|linebreaksbr}}
                         </span>
                     </div>
                 </div>
