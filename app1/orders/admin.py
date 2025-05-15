@@ -46,9 +46,8 @@ class OrderTabulareAdmin(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "user",
-        'user_username',
-        'user_email',
+        'user_first_name',
+        'user_last_name',
         "requires_delivery",
         "status",
         "is_paid",
@@ -63,7 +62,7 @@ class OrderAdmin(admin.ModelAdmin):
         "is_paid",
     )
     readonly_fields = ('user_username', 'user_email', 'user_first_name', 'user_last_name','user_otchestvo','user_phone', 'created_timestamp')
-    fields = ('user', 'user_username', 'user_email', 'user_first_name', 'user_last_name','user_otchestvo','user_phone')
+    fields = ('user', 'user_username', 'user_email', 'user_first_name', 'user_last_name','user_otchestvo','user_phone', "is_paid", "status", "requires_delivery")
     inlines = (OrderItemTabulareAdmin,)
 
     def user_username(self, obj):

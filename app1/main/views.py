@@ -40,6 +40,16 @@ def chat_answer(request):
 
         # Получаем историю из сессии или инициализируем
         chat_history = request.session.get('chat_history', [])
+        chat_history = request.session.get('chat_history', [])
+        if not chat_history:
+            chat_history.append({
+                "role": "system",
+                "content": (
+                    "Ты консультант интернет-магазина строительных материалов 'ТСПК АРМАСТРОЙ'. "
+                    "Отвечай на вопросы клиентов по товарам из каталога. Отвечай просто, чётко и профессионально. "
+                    "Если у тебя нет нужной информации — предложи клиенту позвонить или перейти на сайт armastroy72.ru"
+                )
+            })
         chat_history.append({"role": "user", "content": message})
 
         try:
@@ -47,7 +57,7 @@ def chat_answer(request):
             context = "\n".join([f"{m['role']}: {m['content']}" for m in chat_history[-6:]])  # последние 3 пары
             # Формируем итоговый запрос к модели
             qa_chain = RetrievalQA.from_chain_type(llm, retriever=db.as_retriever())
-            result = qa_chain({"query": context})
+            result = qa_chain({"query": message})  # Используйте message, а не context
             answer = result.get('result', 'Извините, ответ не получен.')
 
             # Добавляем ответ в историю

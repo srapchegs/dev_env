@@ -117,9 +117,9 @@
                 </div>
                 <div class="right-menu-items">
                     <a href="{% url "main:chat" %}" target="_blank">Чат с ИИ</a>
-                    <a href="{% url 'catalog:catalog' category_slug='blocks' %}">Блоки</a>
-                    <a href="{% url 'catalog:catalog' category_slug='bruschatka' %}">Брусчатка</a>
-                    <a href="{% url 'catalog:catalog' category_slug='bordyury' %}">Бордюры</a>
+                    {% for category in categories %}
+                            <a href="{% url "catalog:catalog" category.slug %}">{{ category.name }}</a>
+                    {% endfor %}
                     <a href="{% url "cars:cars" %}">Спец. техника</a>
                     <a href="{% url "main:contacts" %}">Контакты</a>
                     <a href="{% url "reviews:reviews" %}">Отзывы</a>
