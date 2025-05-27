@@ -1,69 +1,102 @@
 from django.shortcuts import render
 from product.models import Categories
-# views.py
 from django.http import JsonResponse
 from langchain_gigachat.chat_models import GigaChat
-from langchain.schema import HumanMessage
 from langchain.document_loaders import TextLoader
-from langchain.text_splitter import (
-    RecursiveCharacterTextSplitter,
-)
-from chromadb.config import Settings
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_gigachat.embeddings.gigachat import GigaChatEmbeddings
+from chromadb.config import Settings
 from langchain_chroma import Chroma
 from langchain.chains import RetrievalQA
+from langchain.prompts import PromptTemplate
+from langchain.memory import ConversationBufferMemory
+import re
+
 # Подключение GigaChat
 GIGACHAT_CREDENTIALS = "MDFlMTZiMjQtZDYxNS00ZTEwLThmZTctZjE2NTYyZjZiZTJlOjNiYmEwMDljLWFkYmQtNDNmZS1hNDliLWQzYzM1MjNiNjQyZA=="
 llm = GigaChat(credentials=GIGACHAT_CREDENTIALS, verify_ssl_certs=False)
 
+# Путь к базе
+CHROMA_DB_DIR = "chroma_db"
+
 loader = TextLoader("/Users/sraperanosan/Downloads/dev_env/app1/main/test.txt")
 documents = loader.load()
+
 text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=1000,
-    chunk_overlap=200,
+    chunk_size=2000,
+    chunk_overlap=500,
 )
 documents = text_splitter.split_documents(documents)
+
 embeddings = GigaChatEmbeddings(
-    credentials="MDFlMTZiMjQtZDYxNS00ZTEwLThmZTctZjE2NTYyZjZiZTJlOjNiYmEwMDljLWFkYmQtNDNmZS1hNDliLWQzYzM1MjNiNjQyZA==", verify_ssl_certs=False
+    credentials=GIGACHAT_CREDENTIALS,
+    verify_ssl_certs=False
 )
+
 db = Chroma.from_documents(
     documents,
     embeddings,
-    client_settings=Settings(anonymized_telemetry=False),
+    persist_directory=CHROMA_DB_DIR,
+    client_settings=Settings(anonymized_telemetry=False)
 )
+
+memory = ConversationBufferMemory(
+    memory_key="chat_history",
+    return_messages=True
+)
+
+# Шаблон запроса (строгое поведение)
+qa_prompt = PromptTemplate(
+    input_variables=["chat_history", "context", "question"],
+    template="""
+Ты — помощник интернет-магазина строительных материалов 'ТСПК АРМАСТРОЙ'.
+Отвечай только на основе приведённых ниже документов и истории общения.
+Если информации в документах нет — напиши, что не можешь ответить и предложи перейти на сайт https://www.armastroy72.ru.
+Если есть ссылка на товар — обязательно укажи её в ответе.
+Если есть расчеты выводи форматом mathjax, polyfill.
+История диалога:
+{chat_history}
+
+Документы:
+{context}
+
+Вопрос: {question}
+Ответ:
+""".strip()
+)
+
+from langchain.chains import ConversationalRetrievalChain
+
+qa_chain = ConversationalRetrievalChain.from_llm(
+    llm=llm,
+    retriever=db.as_retriever(search_kwargs={"k": 3}),
+    memory=memory,
+    combine_docs_chain_kwargs={"prompt": qa_prompt}
+)
+
 
 def chat_answer(request):
     if request.method == 'POST':
         message = request.POST.get('message')
         if not message:
             return JsonResponse({'response': "Сообщение не получено."})
-
-        # Получаем историю из сессии или инициализируем
-        chat_history = request.session.get('chat_history', [])
-        chat_history = request.session.get('chat_history', [])
-        if not chat_history:
-            chat_history.append({
-                "role": "system",
-                "content": (
-                    "Ты консультант интернет-магазина строительных материалов 'ТСПК АРМАСТРОЙ'. "
-                    "Отвечай на вопросы клиентов по товарам из каталога. Отвечай просто, чётко и профессионально. "
-                    "Если у тебя нет нужной информации — предложи клиенту позвонить или перейти на сайт armastroy72.ru"
-                )
-            })
-        chat_history.append({"role": "user", "content": message})
-
         try:
-            # Собираем последние сообщения как контекст
-            context = "\n".join([f"{m['role']}: {m['content']}" for m in chat_history[-6:]])  # последние 3 пары
-            # Формируем итоговый запрос к модели
-            qa_chain = RetrievalQA.from_chain_type(llm, retriever=db.as_retriever())
-            result = qa_chain({"query": message})  # Используйте message, а не context
-            answer = result.get('result', 'Извините, ответ не получен.')
+            # Получаем историю из сессии
+            chat_history = request.session.get('chat_history', [])
+            
+            # Запрашиваем ответ
+            result = qa_chain({
+                "question": message,
+                "chat_history": chat_history  # передаём в память вручную
+            })
 
-            # Добавляем ответ в историю
-            chat_history.append({"role": "assistant", "content": answer})
-            request.session['chat_history'] = chat_history  # сохраняем обратно
+            # Сохраняем обновлённую историю (если используешь кастомную память)
+            chat_history.append(("user", message))
+            chat_history.append(("assistant", result['answer']))
+            request.session['chat_history'] = chat_history
 
+            answer = result.get('answer', 'Извините, ответ не получен.')
+            answer = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', answer)
             return JsonResponse({'response': answer})
         except Exception as e:
             return JsonResponse({'response': f"Ошибка: {str(e)}"})

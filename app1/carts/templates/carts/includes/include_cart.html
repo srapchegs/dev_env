@@ -3,7 +3,7 @@
 <div class="content-purchase">
     <span class="title-orders">Корзина</span>
     {% if carts %}
-    <form action="{% url 'orders:create_order' %}" method="post" class="table-orders">
+    <form action="{% url 'orders:create_order' %}" method="post" onsubmit="showSpinner()" class="table-orders">
         {% csrf_token %}
         <div class="table-orders">
             <div class="orders-table">
@@ -69,6 +69,9 @@
         <a href="{% url 'catalog:catalog' category_slug='blocks' %}" class="button-order" style="margin: auto;">Перейти в каталог</a>
     </div>
     {% endif %}
+    <div id="spinner" style="display: none;">
+        ⏳ Оформляем заказ...
+      </div>
 </div>
 {% if messages %}
     <script type="text/javascript">
@@ -78,6 +81,9 @@
     </script>
 {% endif %}
 <script>
+    function showSpinner() {
+        document.getElementById('button-order').innerHTML = '⏳ Оформляем заказ...';
+    }
     const deliverySelect = document.querySelector('select[name="requires_delivery"]');
     const addressField = document.querySelector('#id_delivery_address');
     addressField.value = "г. Тюмень, ул. Новаторов 7к1";

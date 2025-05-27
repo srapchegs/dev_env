@@ -2,19 +2,28 @@
 
 {% load static %}
 {% block style %}
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <style>
     .chat-container {
-    margin:auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
+      margin:auto;
+      margin-top: 50px;
+      margin-bottom: 50px;
       width: 70%;
-      height: 600px;
+      height: 500px;
       background-color: #fff;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      {% comment %} overflow: hidden; {% endcomment %}
     }
 
     .chat-header {
@@ -93,7 +102,6 @@
       <button onclick="sendMessage()">Отправить</button>
     </div>
   </div>
-
   <script>
     let typingInterval;
     let typingElement;
@@ -170,6 +178,9 @@
             botMsg.className = 'message bot-message';
             botMsg.innerHTML = response;
             chatMessages.appendChild(botMsg);
+            if (window.MathJax) {
+              MathJax.typesetPromise([botMsg]);
+            }
             chatMessages.scrollTop = chatMessages.scrollHeight;
         },
         error: function(xhr) {
