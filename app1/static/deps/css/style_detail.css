@@ -175,6 +175,9 @@ line-height: 24px; /* 133.333% */
     border-radius: var(--sm, 12px);
     background: var(--primary-500, #316650);
 }
+.detail-images{
+    margin-top: 10px;
+}
 .buttons-container-detail{
     gap: 24px;
     display: flex;
@@ -242,6 +245,9 @@ line-height: 24px; /* 133.333% */
     }
 }
 @media (min-width: 768px){
+    .detail-images{
+        margin-top: unset;
+    }
     .description-detail{
        width: 696px;
     }

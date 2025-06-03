@@ -25,7 +25,15 @@
       flex-direction: column;
       {% comment %} overflow: hidden; {% endcomment %}
     }
-
+    .bot-message img {
+      max-width: 100%;
+      height: auto;
+    }
+    .bot-message mjx-container {
+      overflow-x: auto;
+      display: block;
+      max-width: 100%;
+    }
     .chat-header {
       background-color: #316650;
       color: white;
@@ -42,6 +50,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      overflow-x: hidden;
     }
 
     .message {
@@ -50,6 +59,9 @@
       border-radius: 18px;
       font-size: 14px;
       line-height: 1.4;
+      word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
     }
 
     .user-message {
