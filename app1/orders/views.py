@@ -48,8 +48,8 @@ def create_order(request):
                     send_mail(
                         email_subject,
                         email_body,
-                        "srapik614@gmail.com",
-                        ["srapik614@gmail.com"],
+                        "armastroy72@mail.ru",
+                        ["armastroy72@mail.ru"],
                         fail_silently=False,
                     )
                     return redirect('orders:orders')
